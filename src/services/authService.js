@@ -1,27 +1,26 @@
 const baseUrl = 'https://baas.kinvey.com';
 
-export function signUp(usersData) {
+export async function signUp(usersData) {
 
     const requestOptions = {
         method: 'POST',
         headers:
         {
             'Content-Type': 'application/json',
-            'Authorization': 'Basic a2lkX0hrRTVSaC1WVDpkYjRiODNmNmJjZWY0ZTllYTUzNzUyNTYyMjA3MDFkMw=='
+            'Authorization': 'Basic a2lkX0gxQk5YNWZWNjphZGJlNWQ3YThlNTQ0ZDY1YjNhMmFlNTQ5ZDUxZmZkZA=='
         },
         body: JSON.stringify(usersData)
     }
 
     try {
-        const response = fetch(`${baseUrl}/user/kid_HkE5Rh-VT/`, requestOptions);
+        const response = await fetch(`${baseUrl}/user/kid_H1BNX5fV6/`, requestOptions);
 
         if (!response.ok) {
             throw new Error('User cannot be created')
         }
 
-        console.log(response.json())
-
-        return response.json();
+        const result = await response.json();
+        return result;
     } catch (error) {
         console.log(error.message)
     }
@@ -33,15 +32,35 @@ export async function signIn(usersData){
         headers:
         {
             'Content-Type': 'application/json',
-            'Authorization': 'Basic a2lkX3JrTTAtSnpOcDo4Y2UxNTRjNzNkZGY0MzcwYmY0MDQ4MWJjN2QyZWJiNA=='
+            'Authorization': 'Basic a2lkX0gxQk5YNWZWNjphZGJlNWQ3YThlNTQ0ZDY1YjNhMmFlNTQ5ZDUxZmZkZA=='
         },
         body: JSON.stringify(usersData)
     }
 
     try {
-        const response = await fetch(`${baseUrl}/user/kid_rkM0-JzNp/login`, requestOptions);
+        const response = await fetch(`${baseUrl}/user/kid_H1BNX5fV6/login`, requestOptions);
 
-      const result = await response.json();
+        const result = await response.json();
+
+        return result;
+    } catch (error) {
+        console.log(error.message)
+    }
+}
+
+export async function logout(authToken){
+    const requestOptions = {
+        method: 'POST',
+        headers:
+        {
+            'Authorization': `Kinvey ${authToken}`
+        },
+    }
+
+    try {
+        const response = await fetch(`${baseUrl}/user/kid_H1BNX5fV6/_logout`, requestOptions);
+
+        const result = await response.json();
 
         return result;
     } catch (error) {

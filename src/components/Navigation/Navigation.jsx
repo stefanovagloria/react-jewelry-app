@@ -1,8 +1,25 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { getAuthToken, isUserLoggedIn } from "../../utils";
+import { logout } from "../../services/authService";
 
 import styles from "./Navigation.module.css";
 
-const Navigation = ({loggedIn}) => {
+const Navigation = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    setIsLoggedIn(isUserLoggedIn());
+  }, [isLoggedIn]);
+
+  const logoutHandler = () => {
+    const authToken = getAuthToken();
+
+    logout(authToken);
+    setIsLoggedIn(false);
+    localStorage.clear();
+  };
+
   return (
     <nav className={styles.header}>
       <Link to="/" className={styles.logo}>
@@ -12,10 +29,12 @@ const Navigation = ({loggedIn}) => {
         <Link to="/products">Products</Link>
         <Link to="/gallery">Gallery</Link>
         <Link to="/about">About us</Link>
-        {loggedIn ? (
+        {isLoggedIn ? (
           <div className={styles.authButtons}>
-            <Link to="/register">Logout</Link>
-            <Link to="/login">Make an Order</Link>
+            <Link onClick={logoutHandler}>
+              Logout
+            </Link>
+            <Link to="/order">Make an Order</Link>
           </div>
         ) : (
           <div className={styles.authButtons}>
@@ -26,6 +45,6 @@ const Navigation = ({loggedIn}) => {
       </div>
     </nav>
   );
-}
+};
 
 export default Navigation;
