@@ -1,63 +1,72 @@
-const baseUrl = 'https://baas.kinvey.com';
+import {doc,deleteDoc} from 'firebase/firestore';
+import { db } from '../firebase';
 
-export async function getAllProducts(authToken){
-
-    const requestOptions = {
-        method: 'GET',
-        headers:
-        {
-            'Authorization': `Kinvey ${authToken}`,
-        },
-        
-    }
-
-    const response = await fetch(`${baseUrl}/appdata/kid_H1BNX5fV6/products`, requestOptions);
-
-    const result = await response.json();
-
-    return result;
-}
-
-export async function getProductById(id){
-
-}
-
-export async function createProduct(productData, authToken){
-
-    console.log(productData,authToken)
-    const requestOptions = {
-        method: 'POST',
-        headers:
-        {
-            'Authorization': `Kinvey ${authToken}`,
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(productData)
-    }
+export async function getAllProducts() {
 
     try {
-        const response = await fetch(`${baseUrl}/appdata/kid_H1BNX5fV6/products`,requestOptions);
+        const response = await fetch('https://jewelry-app-550f2-default-rtdb.firebaseio.com/products.json')
 
-        if(!response.ok){
-            throw new Error('Product cannot be created..')
+        if (!response.ok) {
+            throw new Error()
         }
 
         const result = await response.json();
 
         return result;
     } catch (error) {
-        
+
+    }
+}
+
+export async function getProductById(id) {
+
+    const response = await fetch(`https://jewelry-app-550f2-default-rtdb.firebaseio.com/products/${id}.json`);
+
+    if(response.ok){
+        const result = await response.json();
+        console.log(result)
+        return result;
+    }
+}
+
+export async function createProduct(productData) {
+
+    const requestOptions = {
+        method: 'POST',
+        headers:
+        {
+            'Content-Type': 'application.json'
+        },
+        body: JSON.stringify(productData)
+
     }
 
-    
+      try {
+        const response = await fetch('https://jewelry-app-550f2-default-rtdb.firebaseio.com/products.json', requestOptions)
+
+        if (!response.ok) {
+            throw new Error()
+        }
+
+        const result = await response.json();
+
+        return result;
+    } catch (error) {
+
+    }
+
 
 
 }
 
-export async function editProduct(id){
+export async function editProduct(id) {
 
 }
 
-export async function deleteProduct(id){
-    
+export async function deleteProduct(id) {
+
+    const requestOptions = {
+        method: 'DELETE',
+    }
+   await fetch(`https://jewelry-app-550f2-default-rtdb.firebaseio.com/products/${id}.json`, requestOptions)
 }

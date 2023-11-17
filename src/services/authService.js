@@ -1,69 +1,28 @@
-const baseUrl = 'https://baas.kinvey.com';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
+import { auth } from '../firebase';
 
-export async function signUp(usersData) {
+export async function signUp(email, password) {
 
-    const requestOptions = {
-        method: 'POST',
-        headers:
-        {
-            'Content-Type': 'application/json',
-            'Authorization': 'Basic a2lkX0gxQk5YNWZWNjphZGJlNWQ3YThlNTQ0ZDY1YjNhMmFlNTQ5ZDUxZmZkZA=='
-        },
-        body: JSON.stringify(usersData)
-    }
-
-    try {
-        const response = await fetch(`${baseUrl}/user/kid_H1BNX5fV6/`, requestOptions);
-
-        if (!response.ok) {
-            throw new Error('User cannot be created')
-        }
-
-        const result = await response.json();
-        return result;
-    } catch (error) {
-        console.log(error.message)
-    }
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredentials) => {
+            localStorage.setItem('uid', userCredentials.user.uid);
+            localStorage.setItem('accessToken', userCredentials.user.accessToken)
+        });
 }
 
-export async function signIn(usersData){
-    const requestOptions = {
-        method: 'POST',
-        headers:
-        {
-            'Content-Type': 'application/json',
-            'Authorization': 'Basic a2lkX0gxQk5YNWZWNjphZGJlNWQ3YThlNTQ0ZDY1YjNhMmFlNTQ5ZDUxZmZkZA=='
-        },
-        body: JSON.stringify(usersData)
-    }
+export async function signIn(email, password) {
 
-    try {
-        const response = await fetch(`${baseUrl}/user/kid_H1BNX5fV6/login`, requestOptions);
-
-        const result = await response.json();
-
-        return result;
-    } catch (error) {
-        console.log(error.message)
-    }
+    signInWithEmailAndPassword(auth, email, password)
+        .then((userCredentials) => {
+            localStorage.setItem('uid', userCredentials.user.uid)
+            localStorage.setItem('accessToken', userCredentials.user.accessToken)
+        })
 }
 
-export async function logout(authToken){
-    const requestOptions = {
-        method: 'POST',
-        headers:
-        {
-            'Authorization': `Kinvey ${authToken}`
-        },
-    }
-
-    try {
-        const response = await fetch(`${baseUrl}/user/kid_H1BNX5fV6/_logout`, requestOptions);
-
-        const result = await response.json();
-
-        return result;
-    } catch (error) {
-        console.log(error.message)
-    }
+export async function logout() {
+    signOut(auth)
+        .then(() => {
+            console.log('Logout succesfully');
+            localStorage.clear();
+        })
 }

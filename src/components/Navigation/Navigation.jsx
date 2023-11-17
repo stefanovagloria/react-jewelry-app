@@ -13,11 +13,8 @@ const Navigation = () => {
   }, [isLoggedIn]);
 
   const logoutHandler = () => {
-    const authToken = getAuthToken();
-
-    logout(authToken);
+    logout();
     setIsLoggedIn(false);
-    localStorage.clear();
   };
 
   return (

@@ -4,12 +4,12 @@ import { signIn } from "../../services/authService";
 import styles from "./Login.module.css";
 
 const Login = () => {
-  const [username, setEmail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
-  const usernameChangeHandler = (e) => {
+  const emailChangeHandler = (e) => {
     setEmail(e.target.value);
   };
 
@@ -20,15 +20,8 @@ const Login = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    const user = await signIn({ username, password });
-    console.log(user)
-    if(user !== undefined){
-      localStorage.setItem("authToken", user._kmd.authtoken);
-      localStorage.setItem('userId',user._id )
-      navigate('/');
-    }
-
-    
+    await signIn(email, password);
+    navigate("/");
   };
 
   return (
@@ -38,12 +31,12 @@ const Login = () => {
         <form onSubmit={submitHandler}>
           <div>
             <label htmlFor="email" className={styles.label}>
-              Username:
+              Email:
             </label>
             <input
               className={styles.input}
-              value={username}
-              onChange={usernameChangeHandler}
+              value={email}
+              onChange={emailChangeHandler}
             />
             <label htmlFor="password" className={styles.label}>
               Password:

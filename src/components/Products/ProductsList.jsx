@@ -3,15 +3,24 @@ import styles from './ProductsList.module.css'
 import ProductItem from "./ProductItem";
 import NewProduct from "./NewProduct";
 import { getAllProducts } from "../../services/productService";
-import { getAuthToken } from "../../utils";
+import { isUserLoggedIn } from "../../utils";
 
 const ProductsList = () => {
   const [products, setProducts] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const authToken = getAuthToken();
-    getAllProducts(authToken).then(result => setProducts(result));
-  }, []);
+    setIsLoggedIn(isUserLoggedIn());
+    getAllProducts().then(productsAsJson => {
+      let products = [];
+
+          for (let id in productsAsJson) {
+            products.push({ ...productsAsJson[id], id });
+          }
+
+          setProducts(products);
+        }
+    )},[])
 
   return (
     <>
@@ -19,11 +28,13 @@ const ProductsList = () => {
       <div className={styles.container}>
         {products.map((product) => (
           
-          <ProductItem key={product._id} product={product}/>
+          <ProductItem key={product.id} product={product}/>
         ))}
       </div>
-
-      <NewProduct />
+      {isLoggedIn ? 
+      <NewProduct /> : ''
+    }
+      
     </>
   );
 };

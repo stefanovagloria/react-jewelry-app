@@ -31,7 +31,7 @@ const NewProduct = () => {
         e.preventDefault();
         const authToken = getAuthToken();
         const creator = getUserId();
-       const createdProduct =  await createProduct({productName,price,category,description,creator }, authToken);
+       const createdProduct =  await createProduct({productName,price,category,description,creator });
 
         console.log(createdProduct)
     }

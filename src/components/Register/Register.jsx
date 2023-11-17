@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {signUp} from '../../services/authService';
 import styles from "./Register.module.css";
 
@@ -7,9 +8,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [rePassword, setRepassword] = useState("");
 
- useEffect(() =>{
-  
- }, [])
+  const navigate = useNavigate();
 
   const emailChangeHandler = (e) => {
     setEmail(e.target.value);
@@ -26,9 +25,10 @@ const Register = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    const user = signUp({email,password,rePassword});
+    console.log(email,password)
+    const user = signUp(email,password);
 
-    console.log(user);
+    navigate('/')
     
   };
 
