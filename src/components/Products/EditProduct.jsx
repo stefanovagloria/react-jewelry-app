@@ -1,14 +1,15 @@
 import { useState } from "react";
 
-import styles from "./NewProduct.module.css";
-import { createProduct } from "../../services/productService";
+import styles from "./EditProduct.module.css";
+import { createProduct, editProduct } from "../../services/productService";
 import { getAuthToken, getUserId } from "../../utils";
 
-const NewProduct = ({ addProduct }) => {
-  const [productName, setProductName] = useState("");
-  const [price, setPrice] = useState("");
-  const [category, setCategory] = useState("");
-  const [description, setDescription] = useState("");
+const EditProduct = ({product, onEditCancel} ) => {
+
+  const [productName, setProductName] = useState(product.productName);
+  const [price, setPrice] = useState(product.price);
+  const [category, setCategory] = useState(product.category);
+  const [description, setDescription] = useState(product.description);
 
   const productNameChangeHandler = (e) => {
     setProductName(e.target.value);
@@ -27,10 +28,10 @@ const NewProduct = ({ addProduct }) => {
   };
 
   const submitHandler = async (e) => {
+    console.log('Editting')
     e.preventDefault();
-
     const creator = getUserId();
-    const createdProduct = await createProduct({
+    const createdProduct = await editProduct(product.id, {
       productName,
       price,
       category,
@@ -38,14 +39,12 @@ const NewProduct = ({ addProduct }) => {
       creator,
     });
 
-    const id = createdProduct.name;
-
-    addProduct({ id, productName, price, category, description, creator });
+    console.log(createdProduct);
   };
 
   return (
     <>
-      <h1 className={styles.title}>Add New Product</h1>
+      <h1 className={styles.title}>Edit Product</h1>
       <div className={styles.container}>
         <form onSubmit={submitHandler}>
           <div>
@@ -53,29 +52,32 @@ const NewProduct = ({ addProduct }) => {
               className={styles.input}
               value={productName}
               onChange={productNameChangeHandler}
-              placeholder="Product name"
+              placeholder={product.productName}
             />
             <input
               className={styles.input}
               value={price}
               onChange={priceChangeHandler}
-              placeholder="Price"
+              placeholder={product.price}
             />
             <input
               className={styles.input}
               value={category}
               onChange={categoryChangeHandler}
-              placeholder="Category"
+              placeholder={product.category}
             />
             <textarea
               className={styles.input}
               value={description}
               onChange={descriptionChangeHandler}
-              placeholder="Description"
+              placeholder={product.description}
             />
           </div>
           <button className={styles.button} type="submit">
-            Send
+            Save Changes
+          </button>
+          <button className={styles.button}  onClick={onEditCancel}>
+            Cancel
           </button>
         </form>
       </div>
@@ -83,4 +85,4 @@ const NewProduct = ({ addProduct }) => {
   );
 };
 
-export default NewProduct;
+export default EditProduct;

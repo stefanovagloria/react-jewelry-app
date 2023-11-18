@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../../services/productService";
 import styles from "./ProductDetails.module.css";
+import sampleImg from '../../assets/5.jpg'
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -14,7 +15,7 @@ const ProductDetails = () => {
   return (
     <div className={styles.container}>
       <div>
-        <img  className={styles.img} src="../../assets/5.jpg" alt="No image" />
+        <img  className={styles.img} src={sampleImg} alt="No image" />
         
       </div>
       <div  className={styles.productInfo}>

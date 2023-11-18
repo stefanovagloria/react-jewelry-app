@@ -20,7 +20,7 @@ export async function signIn(email, password) {
 }
 
 export async function logout() {
-    signOut(auth)
+    await signOut(auth)
         .then(() => {
             console.log('Logout succesfully');
             localStorage.clear();

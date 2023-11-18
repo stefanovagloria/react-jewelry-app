@@ -10,11 +10,10 @@ const Navigation = () => {
 
   useEffect(() => {
     setIsLoggedIn(isUserLoggedIn());
-  }, [isLoggedIn]);
+  }, []);
 
   const logoutHandler = () => {
-    logout();
-    setIsLoggedIn(false);
+    logout().then(() =>setIsLoggedIn(isUserLoggedIn()));
   };
 
   return (

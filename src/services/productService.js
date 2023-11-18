@@ -1,5 +1,3 @@
-import {doc,deleteDoc} from 'firebase/firestore';
-import { db } from '../firebase';
 
 export async function getAllProducts() {
 
@@ -59,8 +57,30 @@ export async function createProduct(productData) {
 
 }
 
-export async function editProduct(id) {
+export async function editProduct(id, productData) {
+    const requestOptions = {
+        method: 'PUT',
+        headers:
+        {
+            'Content-Type': 'application.json'
+        },
+        body: JSON.stringify(productData)
 
+    }
+
+      try {
+        const response = await fetch(`https://jewelry-app-550f2-default-rtdb.firebaseio.com/products/${id}.json`, requestOptions)
+
+        if (!response.ok) {
+            throw new Error()
+        }
+
+        const result = await response.json();
+
+        return result;
+    } catch (error) {
+
+    }
 }
 
 export async function deleteProduct(id) {

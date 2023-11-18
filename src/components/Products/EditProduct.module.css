@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid gainsboro;
+    margin: 30px;
+    padding-bottom: 40px;
+}
+
+.input{
+    display: block;
+    text-align: left;
+    width: 300px;
+    padding: 15px;
+    margin: 15px;
+ }
+
+ .title {
+    text-align: center;
+    margin-left: 30px;
+    margin-top: 80px;
+}
+
+.button {
+    width: 120px;
+    padding: 20px;
+    margin-top: 20px;
+    color: white;
+    font-size: larger;
+    background-color: rgb(188, 158, 113);
+}

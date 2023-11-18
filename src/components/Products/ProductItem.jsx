@@ -5,7 +5,9 @@ import { useEffect, useState } from "react";
 import { deleteProduct } from "../../services/productService";
 import { getUserId } from "../../utils";
 
-const ProductItem = ({ product }) => {
+import sampleImg from '../../assets/5.jpg'
+
+const ProductItem = ({ product, onEdit, onDelete }) => {
 
   const [loggedInAuthor, setLoggedInAuthor] = useState(false);
 
@@ -18,6 +20,7 @@ const ProductItem = ({ product }) => {
 
   const deleteItem = (id) =>{
     deleteProduct(id);
+    onDelete(id);
   }
 
   return (
@@ -26,18 +29,18 @@ const ProductItem = ({ product }) => {
         <div>
           <img
             className={styles.img}
-            src="../../assets/5.jpg"
+            src={sampleImg}
             alt="NO IMAGE"
           />
         </div>
         <div>
           <span className={styles.span}>{product.productName}</span>
-          <span className={styles.span}> Price${product.price} </span>
+          <span className={styles.span}> Price$ {product.price} </span>
         </div>
       </Link>
       {loggedInAuthor ? 
         <div>
-        <button>Edit</button>
+        <button onClick={() => onEdit(product)}>Edit</button>
         <button onClick={ () => deleteItem(product.id)}>Delete</button>
       </div> : ''
       }

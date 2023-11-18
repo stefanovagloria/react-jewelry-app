@@ -1,40 +1,71 @@
 import { useEffect, useState } from "react";
-import styles from './ProductsList.module.css'
+import styles from "./ProductsList.module.css";
 import ProductItem from "./ProductItem";
-import NewProduct from "./NewProduct";
+import ProductEditor from "./ProductEditor";
 import { getAllProducts } from "../../services/productService";
 import { isUserLoggedIn } from "../../utils";
 
 const ProductsList = () => {
   const [products, setProducts] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [editProduct, setEditProduct] = useState({});
 
   useEffect(() => {
     setIsLoggedIn(isUserLoggedIn());
-    getAllProducts().then(productsAsJson => {
+    getAllProducts().then((productsAsJson) => {
       let products = [];
 
-          for (let id in productsAsJson) {
-            products.push({ ...productsAsJson[id], id });
-          }
+      for (let id in productsAsJson) {
+        products.push({ ...productsAsJson[id], id });
+      }
 
-          setProducts(products);
-        }
-    )},[])
+      setProducts(products);
+    });
+  }, []);
+
+  const editModeActivationHandler = (productForEditting) => {
+    setEditMode(true);
+    setEditProduct(productForEditting);
+  };
+
+  const editModeCancellationHandler = () => {
+    setEditMode(false);
+  };
+
+  const addProduct = (product) => {
+    const updatedProduct = [...products, product];
+    setProducts(updatedProduct);
+  };
+
+  const deleteProduct = (id) => {
+    const updatedProduct = products.filter((product) => product.id !== id);
+    setProducts(updatedProduct);
+  };
 
   return (
     <>
-      <h1 className={styles.title}>LATEST PRODUCTS</h1>
+      <h1 className={styles.title}>CATALOG</h1>
       <div className={styles.container}>
         {products.map((product) => (
-          
-          <ProductItem key={product.id} product={product}/>
+          <ProductItem
+            key={product.id}
+            product={product}
+            onEdit={editModeActivationHandler}
+            onDelete={deleteProduct}
+          />
         ))}
       </div>
-      {isLoggedIn ? 
-      <NewProduct /> : ''
-    }
-      
+      {isLoggedIn ? (
+        <ProductEditor
+          edit={editMode}
+          product={editProduct}
+          onEditCancel={editModeCancellationHandler}
+          addProduct={addProduct}
+        />
+      ) : (
+        ""
+      )}
     </>
   );
 };
