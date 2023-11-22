@@ -1,4 +1,4 @@
-.form {
+.div {
     display: flex;
     justify-content: center;
     text-align: center;
@@ -9,20 +9,23 @@
 
 .input{
     display: block;
-    text-align: 'left';
+    text-align: left;
     width: 300px;
     padding: 15px;
     margin: 15px;
- }
+}
 
  .title {
     text-align: center;
     margin-left: 30px;
 }
 
+.label {
+    font-weight: bold;
+}
 
 
-.sbutton {
+.button {
     width: 120px;
     padding: 20px;
     margin-top: 20px;
@@ -31,3 +34,14 @@
     font-size: larger;
     background-color: rgb(188, 158, 113);
 }
+
+.button:hover {
+    cursor: pointer;
+    color: rgb(188, 158, 113);
+    background-color: white;
+}
+
+.a {
+    padding: 10px;
+}
+

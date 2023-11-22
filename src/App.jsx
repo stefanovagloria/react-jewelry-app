@@ -8,7 +8,7 @@ import About from "./components/About";
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import Order from "./components/Order";
-import Contacts from "./components/Contacts";
+import Contacts from "./components/Contacts/Contacts";
 import Footer from "./components/Footer/Footer";
 
 function App() {

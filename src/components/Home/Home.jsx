@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import styles from "./Home.module.css";
 import sampleImg from "../../assets/home.avif";
 
@@ -14,11 +16,12 @@ const Home = () => {
             doloribus consequatur distinctio esse, possimus maiores aliquid
             repellat beatae cum, perspiciatis enim, accusantium perferendis.
           </p>
-          <a
+          <Link 
+          to='/contacts'
             className={styles.contactBtn}
           >
             Contact us
-          </a>
+          </Link>
         </div>
       </div>
     </div>
