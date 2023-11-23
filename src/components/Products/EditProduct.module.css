@@ -22,7 +22,8 @@
 }
 
 .button {
-    width: 120px;
+    display: inline-block;
+    width: 100px;
     padding: 20px;
     margin-top: 20px;
     color: white;

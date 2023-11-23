@@ -4,6 +4,7 @@ import ProductItem from "./ProductItem";
 import ProductEditor from "./ProductEditor";
 import { getAllProducts } from "../../services/productService";
 import { isUserLoggedIn } from "../../utils";
+import Loader from "../Loader/Loader";
 
 const ProductsList = () => {
   const [products, setProducts] = useState([]);
@@ -45,17 +46,24 @@ const ProductsList = () => {
 
   return (
     <>
-      <h1 className={styles.title}>CATALOG</h1>
-      <div className={styles.container}>
-        {products.map((product) => (
-          <ProductItem
-            key={product.id}
-            product={product}
-            onEdit={editModeActivationHandler}
-            onDelete={deleteProduct}
-          />
-        ))}
-      </div>
+      {products.length === 0 ? (
+        <Loader />
+      ) : (
+        <>
+          <h1 className={styles.title}>CATALOG</h1>
+          <div className={styles.container}>
+            {products.map((product) => (
+              <ProductItem
+                key={product.id}
+                product={product}
+                onEdit={editModeActivationHandler}
+                onDelete={deleteProduct}
+              />
+            ))}
+          </div>
+        </>
+      )}
+
       {isLoggedIn ? (
         <ProductEditor
           edit={editMode}

@@ -74,7 +74,7 @@ const EditProduct = ({product, onEditCancel} ) => {
             />
           </div>
           <button className={styles.button} type="submit">
-            Save Changes
+            Save
           </button>
           <button className={styles.button}  onClick={onEditCancel}>
             Cancel

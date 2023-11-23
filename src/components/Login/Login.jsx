@@ -1,51 +1,49 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { signIn } from "../../services/authService";
+import { useContext } from "react";
+import useForm from "../../hooks/useForm";
 import styles from "./Login.module.css";
+import AuthContext from "../../contexts/authContext";
+
+const LoginFormKeys ={
+  Email: 'email',
+  Password: 'password'
+}
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
+const {loginSubmitHandler} = useContext(AuthContext);
 
-  const emailChangeHandler = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const passwordChangeHandler = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const submitHandler = async (e) => {
-    e.preventDefault();
-
-    await signIn(email, password);
-    navigate("/");
-  };
+  const { values, onChange, onSubmit } = useForm(
+    {
+      [LoginFormKeys.Email]: "",
+      [LoginFormKeys.Password]: "",
+    },
+    loginSubmitHandler
+  );
 
   return (
     <>
       <h1 className={styles.title}>LogIn</h1>
       <div className={styles.loginForm}>
-        <form onSubmit={submitHandler}>
+        <form onSubmit={onSubmit}>
           <div>
             <label htmlFor="email" className={styles.label}>
               Email:
             </label>
             <input
+              name={LoginFormKeys.Email}
               className={styles.input}
-              value={email}
-              onChange={emailChangeHandler}
+              value={values[LoginFormKeys.Email]}
+              onChange={onChange}
             />
             <label htmlFor="password" className={styles.label}>
               Password:
             </label>
             <input
+              name={LoginFormKeys.Password}
               className={styles.input}
               type="password"
-              value={password}
-              onChange={passwordChangeHandler}
+              value={values[LoginFormKeys.Password]}
+              onChange={onChange}
             />
           </div>
           <button className={styles.submitBtn} type="submit">

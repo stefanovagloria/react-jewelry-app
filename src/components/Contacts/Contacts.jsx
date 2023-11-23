@@ -5,10 +5,6 @@ const Contacts = () => {
     <>
       <h1 className={styles.title}>CONTACT US</h1>
       <div className={styles.div}>
-        <p>
-          Google Maps Platform rejected your request. This API project is not
-          authorized to use this API.
-        </p>
         <form>
           <input
             className={styles.input}
