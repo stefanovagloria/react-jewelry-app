@@ -1,63 +1,54 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import {signUp} from '../../services/authService';
+import { useContext } from "react";
 import styles from "./Register.module.css";
+import AuthContext from "../../contexts/authContext";
+import useForm from "../../hooks/useForm";
+
+const RegisterFormKeys = {
+  Email: "email",
+  Password: "password",
+  RePassword: "rePassword",
+};
 
 const Register = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [rePassword, setRepassword] = useState("");
-
-  const navigate = useNavigate();
-
-  const emailChangeHandler = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const passwordChangeHandler = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const rePasswordChangeHandler = (e) => {
-    setRepassword(e.target.value);
-  };
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-
-    console.log(email,password)
-    const user = signUp(email,password);
-
-    navigate('/')
-    
-  };
+  const { registerSubmitHandler } = useContext(AuthContext);
+  const { values, onChange, onSubmit } = useForm(
+    {
+      [RegisterFormKeys.Email]: "",
+      [RegisterFormKeys.Password]: "",
+      [RegisterFormKeys.RePassword]: "",
+    },
+    registerSubmitHandler
+  );
 
   return (
     <>
       <h1 className={styles.title}>REGISTER</h1>
       <div className={styles.form}>
-        <form onSubmit={submitHandler}>
+        <form onSubmit={onSubmit}>
           <div>
             <label htmlFor="email">Email:</label>
             <input
+              name="email"
               className={styles.input}
               type="email"
-              value={email}
-              onChange={emailChangeHandler}
+              value={values[RegisterFormKeys.Email]}
+              onChange={onChange}
             />
             <label htmlFor="password">Password:</label>
             <input
+              name="password"
               className={styles.input}
               type="password"
-              value={password}
-              onChange={passwordChangeHandler}
+              value={values[RegisterFormKeys.Password]}
+              onChange={onChange}
             />
             <label htmlFor="rePassword">Repeat password:</label>
             <input
+              name="rePassword"
               className={styles.input}
               type="password"
-              value={rePassword}
-              onChange={rePasswordChangeHandler}
+              value={values[RegisterFormKeys.RePassword]}
+              onChange={onChange}
             />
           </div>
           <button className={styles.sbutton} type="submit">

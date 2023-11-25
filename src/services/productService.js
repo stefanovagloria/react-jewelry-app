@@ -28,7 +28,7 @@ export async function getProductById(id) {
 }
 
 export async function createProduct(productData) {
-
+console.log(productData)
     const requestOptions = {
         method: 'POST',
         headers:
@@ -36,7 +36,6 @@ export async function createProduct(productData) {
             'Content-Type': 'application.json'
         },
         body: JSON.stringify(productData)
-
     }
 
       try {
@@ -57,7 +56,8 @@ export async function createProduct(productData) {
 
 }
 
-export async function editProduct(id, productData) {
+export async function updateProduct(id, productData) {
+    console.log(id, productData)
     const requestOptions = {
         method: 'PUT',
         headers:

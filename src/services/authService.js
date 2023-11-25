@@ -1,18 +1,18 @@
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
 import { auth } from '../firebase';
 
-export async function signUp(email, password) {
+export function signUp(email, password) {
 
-    createUserWithEmailAndPassword(auth, email, password)
+   return createUserWithEmailAndPassword(auth, email, password)
         .then((userCredentials) => {
             localStorage.setItem('uid', userCredentials.user.uid);
-            localStorage.setItem('accessToken', userCredentials.user.accessToken)
+            localStorage.setItem('accessToken', userCredentials.user.accessToken);
+
+            return userCredentials.user;
         });
 }
 
 export function signIn(email, password) {
-
-
 
     return signInWithEmailAndPassword(auth, email, password)
         .then((userCredentials) => {
@@ -27,14 +27,13 @@ export function signIn(email, password) {
             const errorMessage = error.message;
         });
 
-
-
 }
 
-export async function logout() {
-    await signOut(auth)
+export  function logout() {
+    return signOut(auth)
         .then(() => {
             console.log('Logout succesfully');
             localStorage.clear();
+            return true;
         })
 }

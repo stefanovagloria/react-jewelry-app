@@ -9,9 +9,6 @@ import AuthContext from "../../contexts/authContext";
 const Navigation = () => {
   const {isAuthenticated} = useContext(AuthContext);
 
-  const logoutHandler = () => {
-    isAuthenticated = false;
-  };
 
   return (
     <nav className={styles.header}>
@@ -24,7 +21,7 @@ const Navigation = () => {
         <Link to="/about">About us</Link>
         {isAuthenticated && (
           <div className={styles.authButtons}>
-            <Link onClick={logoutHandler}>
+            <Link to='/logout'>
               Logout
             </Link>
             <Link to="/order">Make an Order</Link>

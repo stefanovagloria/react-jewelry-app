@@ -1,16 +1,26 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./ProductsList.module.css";
 import ProductItem from "./ProductItem";
 import ProductEditor from "./ProductEditor";
-import { getAllProducts } from "../../services/productService";
+import {
+  getAllProducts,
+  deleteProduct,
+  createProduct,
+  updateProduct,
+} from "../../services/productService";
 import { isUserLoggedIn } from "../../utils";
 import Loader from "../Loader/Loader";
+import AuthContext from "../../contexts/authContext";
 
 const ProductsList = () => {
+  const { userUid } = useContext(AuthContext);
+
   const [products, setProducts] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [editProduct, setEditProduct] = useState({});
+
+  console.log(userUid)
 
   useEffect(() => {
     setIsLoggedIn(isUserLoggedIn());
@@ -34,14 +44,35 @@ const ProductsList = () => {
     setEditMode(false);
   };
 
-  const addProduct = (product) => {
-    const updatedProduct = [...products, product];
+  const onCreateProduct = (product) => {
+    createProduct({ ...product, creator: userUid }).then((addedObj) => {
+      const newProduct = { ...product, id: addedObj.name, creator: userUid };
+
+      const updatedProduct = [...products, newProduct];
+
+      setProducts(updatedProduct);
+    });
+  };
+
+  const onEditProduct = (product, productId) => {
+    const updatedProduct = {...product, creator: userUid}
+    updateProduct(productId,updatedProduct).then((updatedObj) =>{
+
+      const updatedProduct = { ...product, id: productId, creator: userUid};
+      const updatedProducts = [...products.filter((p) => p.id !== productId), updatedProduct];
+      setProducts(updatedProducts);
+    })
+    
+  };
+
+  const delProduct = (id) => {
+    deleteProduct(id);
+    const updatedProduct = products.filter((product) => product.id !== id);
     setProducts(updatedProduct);
   };
 
-  const deleteProduct = (id) => {
-    const updatedProduct = products.filter((product) => product.id !== id);
-    setProducts(updatedProduct);
+  const addToShoppingCard = (product) => {
+    console.log(product);
   };
 
   return (
@@ -57,7 +88,8 @@ const ProductsList = () => {
                 key={product.id}
                 product={product}
                 onEdit={editModeActivationHandler}
-                onDelete={deleteProduct}
+                onDelete={delProduct}
+                onAddToShoppingCard={addToShoppingCard}
               />
             ))}
           </div>
@@ -69,7 +101,8 @@ const ProductsList = () => {
           edit={editMode}
           product={editProduct}
           onEditCancel={editModeCancellationHandler}
-          addProduct={addProduct}
+          onEdit={onEditProduct}
+          onCreateProduct={onCreateProduct}
         />
       ) : (
         ""

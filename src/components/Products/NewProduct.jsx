@@ -1,76 +1,59 @@
-import { useState } from "react";
+import useForm from "../../hooks/useForm";
 
 import styles from "./NewProduct.module.css";
-import { createProduct } from "../../services/productService";
-import { getAuthToken, getUserId } from "../../utils";
 
-const NewProduct = ({ addProduct }) => {
-  const [productName, setProductName] = useState("");
-  const [price, setPrice] = useState("");
-  const [category, setCategory] = useState("");
-  const [description, setDescription] = useState("");
+const ProductKeys = {
+  ProductName: "productName",
+  Price: "price",
+  Category: "category",
+  Description: "description",
+};
 
-  const productNameChangeHandler = (e) => {
-    setProductName(e.target.value);
-  };
-
-  const priceChangeHandler = (e) => {
-    setPrice(e.target.value);
-  };
-
-  const categoryChangeHandler = (e) => {
-    setCategory(e.target.value);
-  };
-
-  const descriptionChangeHandler = (e) => {
-    setDescription(e.target.value);
-  };
-
-  const submitHandler = async (e) => {
-    e.preventDefault();
-
-    const creator = getUserId();
-    const createdProduct = await createProduct({
-      productName,
-      price,
-      category,
-      description,
-      creator,
-    });
-
-    const id = createdProduct.name;
-
-    addProduct({ id, productName, price, category, description, creator });
-  };
+const NewProduct = ({ onCreate }) => {
+  const { values, onChange, onSubmit } = useForm(
+    {
+      [ProductKeys.ProductName]: "",
+      [ProductKeys.Price]: "",
+      [ProductKeys.Category]: "",
+      [ProductKeys.Description]: "",
+    },
+    onCreate
+  );
 
   return (
     <>
       <h1 className={styles.title}>Add New Product</h1>
       <div className={styles.container}>
-        <form onSubmit={submitHandler}>
+        <form
+          onSubmit={onSubmit}
+        >
           <div>
             <input
               className={styles.input}
-              value={productName}
-              onChange={productNameChangeHandler}
+              name="productName"
+              value={values[ProductKeys.ProductName]}
+              onChange={onChange}
               placeholder="Product name"
             />
             <input
               className={styles.input}
-              value={price}
-              onChange={priceChangeHandler}
+              name="price"
+              value={values[ProductKeys.Price]}
+              onChange={onChange}
               placeholder="Price"
             />
             <input
               className={styles.input}
-              value={category}
-              onChange={categoryChangeHandler}
+              name="category"
+              value={values[ProductKeys.Category]}
+              onChange={onChange}
               placeholder="Category"
             />
             <textarea
               className={styles.input}
-              value={description}
-              onChange={descriptionChangeHandler}
+              name="description"
+              value={values[ProductKeys.Description]}
+              onChange={onChange}
               placeholder="Description"
             />
           </div>
