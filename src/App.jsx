@@ -1,5 +1,10 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AuthContext from './contexts/authContext'
+import { useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
+
+import AuthContext from "./contexts/authContext";
+import { signIn } from "./services/authService";
+import Path from '../src/paths';
+
 import Navigation from "./components/Navigation/Navigation";
 import Home from "./components/Home/Home";
 import ProductsList from "./components/Products/ProductsList";
@@ -11,21 +16,30 @@ import Login from "./components/Login/Login";
 import Order from "./components/Order";
 import Contacts from "./components/Contacts/Contacts";
 import Footer from "./components/Footer/Footer";
-import { useState } from "react";
 
 function App() {
+  const navigate = useNavigate();
   const [auth, setAuth] = useState({});
 
-  const loginSubmitHandler = async (values) => {
-    await signIn(values.email, values.password);
-    navigate("/");
+  const loginSubmitHandler =  (values) => {
+   signIn(values.email, values.password)
+   .then((userData) =>{
+    setAuth(userData);
+    navigate(Path.Home);
+   })
+
+
   };
+
+  const values = {
+    loginSubmitHandler,
+    isAuthenticated: !!auth.email,
+  }
 
   return (
     <>
-    <AuthContext.Provider value={{loginSubmitHandler}}>
-      <BrowserRouter>
-        <Navigation></Navigation>
+      <AuthContext.Provider value={values}>
+        <Navigation />
 
         <Routes>
           <Route path="/" element={<Home />} />
@@ -40,7 +54,6 @@ function App() {
         </Routes>
 
         <Footer />
-      </BrowserRouter>
       </AuthContext.Provider>
     </>
   );

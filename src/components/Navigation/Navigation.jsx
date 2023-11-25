@@ -1,19 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { getAuthToken, isUserLoggedIn } from "../../utils";
+import {  isUserLoggedIn } from "../../utils";
 import { logout } from "../../services/authService";
 
 import styles from "./Navigation.module.css";
+import AuthContext from "../../contexts/authContext";
 
 const Navigation = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    setIsLoggedIn(isUserLoggedIn());
-  }, []);
+  const {isAuthenticated} = useContext(AuthContext);
 
   const logoutHandler = () => {
-    logout().then(() =>setIsLoggedIn(isUserLoggedIn()));
+    isAuthenticated = false;
   };
 
   return (
@@ -25,14 +22,15 @@ const Navigation = () => {
         <Link to="/products">Products</Link>
         <Link to="/gallery">Gallery</Link>
         <Link to="/about">About us</Link>
-        {isLoggedIn ? (
+        {isAuthenticated && (
           <div className={styles.authButtons}>
             <Link onClick={logoutHandler}>
               Logout
             </Link>
             <Link to="/order">Make an Order</Link>
           </div>
-        ) : (
+        ) }
+        { !isAuthenticated && (
           <div className={styles.authButtons}>
             <Link to="/register">Register</Link>
             <Link to="/login">Login</Link>

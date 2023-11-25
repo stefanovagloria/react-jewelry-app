@@ -10,13 +10,25 @@ export async function signUp(email, password) {
         });
 }
 
-export async function signIn(email, password) {
+export function signIn(email, password) {
 
-    signInWithEmailAndPassword(auth, email, password)
+
+
+    return signInWithEmailAndPassword(auth, email, password)
         .then((userCredentials) => {
+
             localStorage.setItem('uid', userCredentials.user.uid)
-            localStorage.setItem('accessToken', userCredentials.user.accessToken)
-        })
+            localStorage.setItem('accessToken', userCredentials.user.accessToken);
+
+            return userCredentials.user;
+
+        }).catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+        });
+
+
+
 }
 
 export async function logout() {
