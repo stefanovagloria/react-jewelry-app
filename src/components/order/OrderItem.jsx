@@ -17,12 +17,12 @@ const OrderItem = ({product, onRemove}) => {
         <div className={styles.count}>1</div>
         <div className={styles.btn}>-</div>
       </div>
-      <div className={styles.prices}>
+      <span className={styles.prices}>
         <div className={styles.amount}>${product.product.price}</div>
         <div className={styles.remove} onClick={() => onRemove(product.product.id)}>
           <u>Remove</u>
         </div>
-      </div>
+      </span>
    </>
   );
 };
