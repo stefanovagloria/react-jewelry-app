@@ -42,7 +42,7 @@
 	border-bottom: 1px solid #E44C4C;
 }
 
-.Cart-Items{
+.CartItems{
 	margin: auto;
 	width: 90%;
 	height: 30%;
@@ -52,7 +52,7 @@
 }
 
 
-.image-box{
+.imageBox{
 	width: 20px;
 	text-align: center;
 }

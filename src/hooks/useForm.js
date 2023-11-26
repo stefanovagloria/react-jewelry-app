@@ -15,9 +15,9 @@ const useForm = (initialValues, submitHandler) => {
     const onSubmit = async (e, defaultParameter) => {
         e.preventDefault();
 
-        console.log('Submitting..')
-
         await submitHandler(values, defaultParameter);
+
+       
     }
 
     return { values, onChange, onSubmit };

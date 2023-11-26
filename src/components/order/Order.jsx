@@ -1,11 +1,28 @@
 import { useState } from "react";
 import styles from "./Order.module.css";
 import { useEffect } from "react";
+import { getOrderedProducts } from "../../services/orderService";
+
+import OrderItem from './OrderItem'
 
 const Order = () => {
   const [orderedProducts, setOrderedProducts] = useState([]);
 
   useEffect(() =>{
+
+    getOrderedProducts()
+    .then((productsAsJson) =>{
+      let products = [];
+
+      for (let id in productsAsJson) {
+        products.push({ ...productsAsJson[id], id });
+      }
+
+      console.log(products)
+      setOrderedProducts(products);
+    });
+
+
     // to fetch all ordered products and to filter these, which are corresponding 
     // for the current userUiD, extracted from AuthContext
   },[])
@@ -30,28 +47,9 @@ const Order = () => {
           )}
         </div>
         {orderedProducts.length > 0 && (
-            <div className={styles.Cart-Items}>
-            {orderedProducts.map((product) => <>
-                <div class="image-box">
-            <img src="" />
-          </div>
-          <div class="about">
-            <h1 class="title">{ product.productName }</h1>
-            <img src="" />
-          </div>
-          <div class="counter">
-            <div class="btn">+</div>
-            <div class="count">2</div>
-            <div class="btn">-</div>
-          </div>
-          <div class="prices">
-            <div class="amount">${ product.price }</div>
-            <div class="remove" onClick={removeProduct(product.id)}>
-              <u>Remove</u>
-            </div>
-          </div>
-
-            </>)}
+            <div className={styles.CartItems}>
+            {orderedProducts.map((product) => 
+            <OrderItem key={product.id} product={product} onRemove={removeProduct}  /> )}
             </div>
         )}
         {orderedProducts.length === 0 && (

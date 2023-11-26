@@ -11,6 +11,7 @@ import {
 import { isUserLoggedIn } from "../../utils";
 import Loader from "../Loader/Loader";
 import AuthContext from "../../contexts/authContext";
+import { addProduct } from "../../services/orderService";
 
 const ProductsList = () => {
   const { userUid } = useContext(AuthContext);
@@ -36,6 +37,7 @@ const ProductsList = () => {
   }, []);
 
   const editModeActivationHandler = (productForEditting) => {
+    console.log(productForEditting)
     setEditMode(true);
     setEditProduct(productForEditting);
   };
@@ -55,10 +57,11 @@ const ProductsList = () => {
   };
 
   const onEditProduct = (product, productId) => {
-    const updatedProduct = {...product, creator: userUid}
+  
+    const updatedProduct = {...product, id: productId, creator: userUid}
     updateProduct(productId,updatedProduct).then((updatedObj) =>{
 
-      const updatedProduct = { ...product, id: productId, creator: userUid};
+      
       const updatedProducts = [...products.filter((p) => p.id !== productId), updatedProduct];
       setProducts(updatedProducts);
     })
@@ -72,7 +75,9 @@ const ProductsList = () => {
   };
 
   const addToShoppingCard = (product) => {
-    console.log(product);
+    const orderedProduct = {product: {...product}, userId: userUid, isCompleted: false};
+
+    addProduct(orderedProduct);
   };
 
   return (

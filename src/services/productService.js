@@ -28,7 +28,7 @@ export async function getProductById(id) {
 }
 
 export async function createProduct(productData) {
-console.log(productData)
+
     const requestOptions = {
         method: 'POST',
         headers:
