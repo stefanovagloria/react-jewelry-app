@@ -2,10 +2,9 @@ import { Link } from "react-router-dom";
 
 import styles from "./ProductItem.module.css";
 import { useEffect, useState } from "react";
-import { deleteProduct } from "../../services/productService";
-import { getUserId } from "../../utils";
+import { getUserId } from "../../../utils";
 
-import sampleImg from "../../assets/381074000_781201344013814_821133475041912350_n.jpg";
+import sampleImg from "../../../assets/381074000_781201344013814_821133475041912350_n.jpg";
 
 const ProductItem = ({ product, onEdit, onDelete, onAddToShoppingCard }) => {
   const [loggedInAuthor, setLoggedInAuthor] = useState(false);

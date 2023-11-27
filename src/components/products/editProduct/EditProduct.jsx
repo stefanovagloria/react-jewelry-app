@@ -1,5 +1,5 @@
 import styles from "./EditProduct.module.css";
-import useForm from "../../hooks/useForm";
+import useForm from "../../../hooks/useForm";
 
 const ProductKeys = {
   ProductName: "productName",

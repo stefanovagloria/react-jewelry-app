@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProductById } from "../../services/productService";
+import { getProductById } from "../../../services/productService";
 import styles from "./ProductDetails.module.css";
-import sampleImg from '../../assets/381074000_781201344013814_821133475041912350_n.jpg'
+import sampleImg from '../../../assets/381074000_781201344013814_821133475041912350_n.jpg'
 
 const ProductDetails = () => {
   const { id } = useParams();

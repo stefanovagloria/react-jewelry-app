@@ -7,8 +7,8 @@ import Path from "../src/paths";
 
 import Navigation from "./components/Navigation/Navigation";
 import Home from "./components/home/Home";
-import ProductsList from "./components/products/ProductsList";
-import ProductDetails from "./components/products/ProductDetails";
+import ProductsList from "./components/products/productsList/ProductsList";
+import ProductDetails from "./components/products/productDetails/ProductDetails";
 import Gallery from "./components/gallery/Gallery";
 import About from "./components/about/About";
 import Register from "./components/Register/Register";

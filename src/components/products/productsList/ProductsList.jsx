@@ -1,17 +1,17 @@
 import { useContext, useEffect, useState } from "react";
 import styles from "./ProductsList.module.css";
-import ProductItem from "./ProductItem";
-import ProductEditor from "./ProductEditor";
+import ProductItem from "../productItem/ProductItem";
+import ProductEditor from "../productEditor/ProductEditor";
 import {
   getAllProducts,
   deleteProduct,
   createProduct,
   updateProduct,
-} from "../../services/productService";
-import { isUserLoggedIn } from "../../utils";
-import Loader from "../Loader/Loader";
-import AuthContext from "../../contexts/authContext";
-import { addProduct } from "../../services/orderService";
+} from "../../../services/productService";
+import { isUserLoggedIn } from "../../../utils";
+import Loader from "../../loader/Loader";
+import AuthContext from "../../../contexts/authContext";
+import { addProduct } from "../../../services/orderService";
 
 const ProductsList = () => {
   const { userUid } = useContext(AuthContext);
