@@ -41,6 +41,10 @@ const Order = () => {
 
   const removeProduct = async (productId) => {
     await deleteOrderedProduct(productId);
+
+    const productPrice = orderedProducts.find((p) => p.id === productId).product.price;
+    setTotalAmount(totalAmount - productPrice);
+
     const updatedProducts = orderedProducts.filter(
       (product) => product.id !== productId
     );
