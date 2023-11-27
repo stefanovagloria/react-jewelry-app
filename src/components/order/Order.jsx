@@ -57,6 +57,7 @@ const Order = () => {
             <div className={styles.emptyCart}>No added products!</div>
           </div>
         )}
+      
       </div>
     </div>
   );
