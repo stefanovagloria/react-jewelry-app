@@ -4,6 +4,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import AuthContext from "./contexts/authContext";
 import { logout, signIn, signUp } from "./services/authService";
 import Path from "../src/paths";
+import styles from './App.module.css'
 
 import Navigation from "./components/Navigation/Navigation";
 import Home from "./components/home/Home";

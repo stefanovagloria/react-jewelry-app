@@ -2,7 +2,6 @@ import styles from './Order.module.css'
 
 const OrderItem = ({product, onRemove}) => {
 
-    console.log(product.product.id)
   return (
     <>
     <div className={styles.itemContainer}>
@@ -17,7 +16,7 @@ const OrderItem = ({product, onRemove}) => {
       </div>
       <span className={styles.prices}>
         <div className={styles.amount}>${product.product.price}</div>
-        <div className={styles.remove} onClick={() => onRemove(product.product.id)}>
+        <div className={styles.remove} onClick={() => onRemove(product.id)}>
           <u>Remove</u>
         </div>
       </span>

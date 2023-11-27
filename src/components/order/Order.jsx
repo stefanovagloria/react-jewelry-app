@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./Order.module.css";
 import { useEffect } from "react";
-import { getOrderedProducts } from "../../services/orderService";
+import { deleteOrderedProduct, getOrderedProducts } from "../../services/orderService";
 
 import OrderItem from './OrderItem'
 
@@ -31,8 +31,11 @@ const Order = () => {
 
   };
 
-  const removeProduct = (productId) =>{
+  const removeProduct = async (productId) =>{
 
+    await deleteOrderedProduct(productId);
+    const updatedProducts = orderedProducts.filter((product) => product.id !== productId);
+    setOrderedProducts(updatedProducts);
   }
 
   return (
@@ -50,7 +53,17 @@ const Order = () => {
             <div className={styles.CartItems}>
             {orderedProducts.map((product) => 
             <OrderItem key={product.id} product={product} onRemove={removeProduct}  /> )}
-            </div>
+            
+            <div className={styles.checkout}>
+             <div className={styles.total}>
+               <div>
+                 <div className={styles.Subtotal}>Total amount:</div>
+               </div>
+               <div className={styles.totalAmount}>${  }</div>
+             </div>
+             <button className={styles.button}>Checkout</button>
+           </div>
+           </div>
         )}
         {orderedProducts.length === 0 && (
           <div>

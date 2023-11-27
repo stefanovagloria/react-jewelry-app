@@ -1,10 +1,10 @@
 .container{
-    margin: 0;
-	padding: 0;
-	height: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	padding: auto;
+	height: 80%;
 	background-color: whitesmoke;
 	height: 100vh;
-	display: flex;
 	justify-content: center;
 	align-items: center;
 }
@@ -107,10 +107,18 @@
 
 .prices{
 
+	display: flex;
+	flex-direction: column;
 	text-align: right;
 }
+
+.prices div{
+	
+}
+
 .amount{
-	padding-top: 5px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 	font-size: 26px;
 	font-family: 'Open Sans';
 	font-weight: 800;
@@ -125,7 +133,7 @@
 	cursor: pointer;
 }
 .remove{
-	padding-top: 5px;
+
 	font-size: 14px;
 	font-family: 'Open Sans';
 	font-weight: 600;
@@ -165,7 +173,7 @@ hr{
 	color: #909090;
 	line-height: 10px;
 }
-.total-amount{
+.totalAmount{
 	font-size: 36px;
 	font-family: 'Open Sans';
 	font-weight: 900;

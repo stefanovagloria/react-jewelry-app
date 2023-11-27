@@ -20,3 +20,11 @@ export async function getOrderedProducts(){
 
     return result;
 }
+
+export async function deleteOrderedProduct(id){
+
+    const requestOptions = {
+        method: 'DELETE',
+    }
+   const response = await fetch(`${baseUrl}/orderedProducts/${id}.json`, requestOptions)
+}
