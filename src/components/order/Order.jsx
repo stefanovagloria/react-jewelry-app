@@ -13,18 +13,22 @@ import OrderItem from "./OrderItem";
 const Order = () => {
   const { userUid } = useContext(AuthContext);
   const [orderedProducts, setOrderedProducts] = useState([]);
+  const [totalAmount, setTotalAmount] = useState(0);
 
   useEffect(() => {
     getOrderedProducts().then((productsAsJson) => {
       let products = [];
-
+      let totalAmount = 0;
       for (let id in productsAsJson) {
         if (productsAsJson[id].userId === userUid) {
           products.push({ ...productsAsJson[id], id });
+          totalAmount += Number(productsAsJson[id].product.price)
         }
       }
       setOrderedProducts(products);
+      setTotalAmount(totalAmount);
     });
+
   }, []);
 
   const removeAllProducts = async () => {
@@ -69,7 +73,7 @@ const Order = () => {
                 <div>
                   <div className={styles.Subtotal}>Total amount:</div>
                 </div>
-                <div className={styles.totalAmount}>${}</div>
+                <div className={styles.totalAmount}>${totalAmount}</div>
               </div>
               <button className={styles.button}>Checkout</button>
             </div>
