@@ -1,42 +1,42 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from "./Order.module.css";
 import { useEffect } from "react";
-import { deleteOrderedProduct, getOrderedProducts } from "../../services/orderService";
+import {
+  deleteOrderedProduct,
+  getOrderedProducts,
+} from "../../services/orderService";
 
-import OrderItem from './OrderItem'
+import AuthContext from "../../contexts/authContext";
+
+import OrderItem from "./OrderItem";
 
 const Order = () => {
+  const { userUid } = useContext(AuthContext);
   const [orderedProducts, setOrderedProducts] = useState([]);
 
-  useEffect(() =>{
-
-    getOrderedProducts()
-    .then((productsAsJson) =>{
+  useEffect(() => {
+    getOrderedProducts().then((productsAsJson) => {
       let products = [];
 
       for (let id in productsAsJson) {
-        products.push({ ...productsAsJson[id], id });
+        if (productsAsJson[id].userId === userUid) {
+          products.push({ ...productsAsJson[id], id });
+        }
       }
-
-      console.log(products)
+      console.log(products);
       setOrderedProducts(products);
     });
+  }, []);
 
+  const removeAllProducts = () => {};
 
-    // to fetch all ordered products and to filter these, which are corresponding 
-    // for the current userUiD, extracted from AuthContext
-  },[])
-
-  const removeAllProducts = () => {
-
-  };
-
-  const removeProduct = async (productId) =>{
-
+  const removeProduct = async (productId) => {
     await deleteOrderedProduct(productId);
-    const updatedProducts = orderedProducts.filter((product) => product.id !== productId);
+    const updatedProducts = orderedProducts.filter(
+      (product) => product.id !== productId
+    );
     setOrderedProducts(updatedProducts);
-  }
+  };
 
   return (
     <div className={styles.container}>
@@ -50,27 +50,31 @@ const Order = () => {
           )}
         </div>
         {orderedProducts.length > 0 && (
-            <div className={styles.CartItems}>
-            {orderedProducts.map((product) => 
-            <OrderItem key={product.id} product={product} onRemove={removeProduct}  /> )}
-            
+          <div className={styles.CartItems}>
+            {orderedProducts.map((product) => (
+              <OrderItem
+                key={product.id}
+                product={product}
+                onRemove={removeProduct}
+              />
+            ))}
+
             <div className={styles.checkout}>
-             <div className={styles.total}>
-               <div>
-                 <div className={styles.Subtotal}>Total amount:</div>
-               </div>
-               <div className={styles.totalAmount}>${  }</div>
-             </div>
-             <button className={styles.button}>Checkout</button>
-           </div>
-           </div>
+              <div className={styles.total}>
+                <div>
+                  <div className={styles.Subtotal}>Total amount:</div>
+                </div>
+                <div className={styles.totalAmount}>${}</div>
+              </div>
+              <button className={styles.button}>Checkout</button>
+            </div>
+          </div>
         )}
         {orderedProducts.length === 0 && (
           <div>
             <div className={styles.emptyCart}>No added products!</div>
           </div>
         )}
-      
       </div>
     </div>
   );
