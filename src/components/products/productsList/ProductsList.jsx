@@ -21,8 +21,6 @@ const ProductsList = () => {
   const [editMode, setEditMode] = useState(false);
   const [editProduct, setEditProduct] = useState({});
 
-  console.log(userUid)
-
   useEffect(() => {
     setIsLoggedIn(isUserLoggedIn());
     getAllProducts().then((productsAsJson) => {

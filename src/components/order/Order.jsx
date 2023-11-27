@@ -23,12 +23,17 @@ const Order = () => {
           products.push({ ...productsAsJson[id], id });
         }
       }
-      console.log(products);
       setOrderedProducts(products);
     });
   }, []);
 
-  const removeAllProducts = () => {};
+  const removeAllProducts = async () => {
+    for (let product in orderedProducts) {
+      const id = orderedProducts[product].id;
+      await deleteOrderedProduct(id);
+    }
+    setOrderedProducts([]);
+  };
 
   const removeProduct = async (productId) => {
     await deleteOrderedProduct(productId);
