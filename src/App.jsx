@@ -1,10 +1,6 @@
-import { useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
-import AuthContext from "./contexts/authContext";
-import { logout, signIn, signUp } from "./services/authService";
-import Path from "../src/paths";
-import styles from './App.module.css'
+import { AuthProvider } from "./contexts/authContext";
 
 import Navigation from "./components/Navigation/Navigation";
 import Home from "./components/home/Home";
@@ -20,43 +16,11 @@ import Footer from "./components/footer/Footer";
 import Logout from "./components/logout/Logout";
 
 function App() {
-  const navigate = useNavigate();
-  const [auth, setAuth] = useState({});
 
-  const loginSubmitHandler = (values) => {
-    signIn(values.email, values.password).then((userData) => {
-      setAuth({userUid: userData.uid});
-      
-    });
-
-    navigate(Path.Home);
-    console.log(auth);
-  };
-
-
-  const registerSubmitHandler = (values) => {
-    signUp(values.email, values.password).then((userData) => {
-      setAuth(userData);
-      navigate(Path.Home);
-    });
-  };
-
-  const logoutHandler = () => {
-    logout().then(() => setAuth({}));
-    navigate(Path.Home);
-  };
-
-  const values = {
-    loginSubmitHandler,
-    registerSubmitHandler,
-    logoutHandler,
-    isAuthenticated: localStorage.getItem("accessToken"),
-    userUid: auth.userUid,
-  };
 
   return (
     <>
-      <AuthContext.Provider value={values}>
+      <AuthProvider>
         <Navigation />
 
         <Routes>
@@ -73,7 +37,7 @@ function App() {
         </Routes>
 
         <Footer />
-      </AuthContext.Provider>
+      </AuthProvider>
     </>
   );
 }
