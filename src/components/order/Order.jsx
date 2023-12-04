@@ -4,16 +4,19 @@ import { useEffect } from "react";
 import {
   deleteOrderedProduct,
   getOrderedProducts,
+  updateOrderedProduct,
 } from "../../services/orderService";
 
 import AuthContext from "../../contexts/authContext";
 
 import OrderItem from "./OrderItem";
+import MyOrders from "../my-Orders/myOrders";
 
 const Order = () => {
   const { userUid } = useContext(AuthContext);
   const [orderedProducts, setOrderedProducts] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
+  const [completedOrders, setCompletedOrders] = useState([]);
 
   useEffect(() => {
     getOrderedProducts().then((productsAsJson) => {
@@ -51,11 +54,35 @@ const Order = () => {
     setOrderedProducts(updatedProducts);
   };
 
+  const checkOut = async () =>{
+
+    for (const product of orderedProducts) {
+    const updatedResult = await updateOrderedProduct(product.id);
+    }
+
+    setOrderedProducts([]);
+
+    getOrderedProducts().then((productsAsJson) => {
+      let products = [];
+      let totalAmount = 0;
+      for (let id in productsAsJson) {
+        if (productsAsJson[id].userId === userUid) {
+          products.push({ ...productsAsJson[id], id });
+          totalAmount += Number(productsAsJson[id].product.price)
+        }
+      }
+      setCompletedOrders(products);
+      setTotalAmount(totalAmount);
+    });
+  }
+
   return (
-    <div className={styles.container}>
+    <>
+      <div className={styles.container}>
       <div className={styles.CartContainer}>
         <div className={styles.Header}>
           <h3 className={styles.Heading}>Shopping Cart</h3>
+          
           {orderedProducts.length > 0 && (
             <h5 className={styles.Action} onClick={removeAllProducts}>
               Remove all
@@ -64,7 +91,8 @@ const Order = () => {
         </div>
         {orderedProducts.length > 0 && (
           <div className={styles.CartItems}>
-            {orderedProducts.map((product) => (
+            {orderedProducts.map((product) =>  product.isCompleted === false && (
+             
               <OrderItem
                 key={product.id}
                 product={product}
@@ -79,17 +107,20 @@ const Order = () => {
                 </div>
                 <div className={styles.totalAmount}>${totalAmount}</div>
               </div>
-              <button className={styles.button}>Checkout</button>
+              <button className={styles.button} onClick={checkOut}>Checkout</button>
             </div>
           </div>
         )}
-        {orderedProducts.length === 0 && (
+         {orderedProducts.length === 0 && (
           <div>
             <div className={styles.emptyCart}>No added products!</div>
           </div>
         )}
-      </div>
+        </div>
     </div>
+    <MyOrders orders={orderedProducts} totalAmount={totalAmount}/>
+    </>
+  
   );
 };
 

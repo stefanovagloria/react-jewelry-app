@@ -11,7 +11,6 @@ const Contacts = () => {
             id="name"
             type="text"
             placeholder="Name"
-            formControlName="name"
           />
 
           <input
@@ -19,7 +18,6 @@ const Contacts = () => {
             id="email"
             type="text"
             placeholder="Email"
-            formControlName="email"
           />
 
           <input
@@ -27,7 +25,6 @@ const Contacts = () => {
             id="phone"
             type="text"
             placeholder="Phone"
-            formControlName="phone"
           />
 
           <input
@@ -35,7 +32,6 @@ const Contacts = () => {
             id="message"
             type="text"
             placeholder="Message"
-            formControlName="message"
           />
 
           <button className={styles.button}>SEND</button>
