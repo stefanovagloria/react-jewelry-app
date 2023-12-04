@@ -1,14 +1,13 @@
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import {  isUserLoggedIn } from "../../utils";
+import { isUserLoggedIn } from "../../utils";
 import { logout } from "../../services/authService";
 
 import styles from "./Navigation.module.css";
 import AuthContext from "../../contexts/authContext";
 
 const Navigation = () => {
-  const {isAuthenticated} = useContext(AuthContext);
-
+  const { isAuthenticated } = useContext(AuthContext);
 
   return (
     <nav className={styles.header}>
@@ -20,14 +19,15 @@ const Navigation = () => {
         <Link to="/gallery">Gallery</Link>
         <Link to="/about">About us</Link>
         {isAuthenticated && (
-          <div className={styles.authButtons}>
-            <Link to='/logout'>
-              Logout
-            </Link>
-            <Link to="/order">Make an Order</Link>
-          </div>
-        ) }
-        { !isAuthenticated && (
+          <>
+            <Link to="/profile">Profile</Link>
+            <div className={styles.authButtons}>
+              <Link to="/logout">Logout</Link>
+              <Link to="/order">Make an Order</Link>
+            </div>
+          </>
+        )}
+        {!isAuthenticated && (
           <div className={styles.authButtons}>
             <Link to="/register">Register</Link>
             <Link to="/login">Login</Link>

@@ -16,7 +16,7 @@ const Order = () => {
   const { userUid } = useContext(AuthContext);
   const [orderedProducts, setOrderedProducts] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
-  const [completedOrders, setCompletedOrders] = useState([]);
+
 
   useEffect(() => {
     getOrderedProducts().then((productsAsJson) => {
@@ -62,18 +62,7 @@ const Order = () => {
 
     setOrderedProducts([]);
 
-    getOrderedProducts().then((productsAsJson) => {
-      let products = [];
-      let totalAmount = 0;
-      for (let id in productsAsJson) {
-        if (productsAsJson[id].userId === userUid) {
-          products.push({ ...productsAsJson[id], id });
-          totalAmount += Number(productsAsJson[id].product.price)
-        }
-      }
-      setCompletedOrders(products);
-      setTotalAmount(totalAmount);
-    });
+    
   }
 
   return (
@@ -118,7 +107,6 @@ const Order = () => {
         )}
         </div>
     </div>
-    <MyOrders orders={orderedProducts} totalAmount={totalAmount}/>
     </>
   
   );
