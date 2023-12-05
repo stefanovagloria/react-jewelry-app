@@ -17,7 +17,7 @@ const useForm = (initialValues, submitHandler) => {
 
         await submitHandler(values, defaultParameter);
 
-       
+       setValues(initialValues)
     }
 
     return { values, onChange, onSubmit };
