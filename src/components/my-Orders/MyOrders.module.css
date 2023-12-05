@@ -8,6 +8,10 @@
 
 }
 
+.products {
+	margin-left: 3rem;
+}
+
 .CartContainer{
 	width: 60%;
 	padding: 20px;

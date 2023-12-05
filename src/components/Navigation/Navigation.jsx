@@ -20,7 +20,7 @@ const Navigation = () => {
         <Link to="/about">About us</Link>
         {isAuthenticated && (
           <>
-            <Link to="/profile">Profile</Link>
+            <Link to="/my-orders">My Orders</Link>
             <div className={styles.authButtons}>
               <Link to="/logout">Logout</Link>
               <Link to="/order">Make an Order</Link>

@@ -14,7 +14,7 @@ import Order from "./components/order/Order";
 import Contacts from "./components/contacts/Contacts";
 import Footer from "./components/footer/Footer";
 import Logout from "./components/logout/Logout";
-import Profile from "./components/profile/Profile";
+import MyOrders from "./components/my-Orders/myOrders";
 
 function App() {
 
@@ -30,7 +30,7 @@ function App() {
           <Route path="/products/:id" element={<ProductDetails />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/about" element={<About />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/my-orders" element={<MyOrders />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/order" element={<Order />} />

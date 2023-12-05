@@ -10,7 +10,6 @@ import {
 import AuthContext from "../../contexts/authContext";
 
 import OrderItem from "./OrderItem";
-import MyOrders from "../my-Orders/myOrders";
 
 const Order = () => {
   const { userUid } = useContext(AuthContext);
@@ -23,7 +22,7 @@ const Order = () => {
       let products = [];
       let totalAmount = 0;
       for (let id in productsAsJson) {
-        if (productsAsJson[id].userId === userUid) {
+        if (productsAsJson[id].userId === userUid && productsAsJson[id].isCompleted === false) {
           products.push({ ...productsAsJson[id], id });
           totalAmount += Number(productsAsJson[id].product.price)
         }
@@ -61,8 +60,7 @@ const Order = () => {
     }
 
     setOrderedProducts([]);
-
-    
+    setTotalAmount(0);
   }
 
   return (
@@ -80,7 +78,7 @@ const Order = () => {
         </div>
         {orderedProducts.length > 0 && (
           <div className={styles.CartItems}>
-            {orderedProducts.map((product) =>  product.isCompleted === false && (
+            {orderedProducts.map((product) =>   (
              
               <OrderItem
                 key={product.id}
