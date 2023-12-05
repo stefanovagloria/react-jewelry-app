@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
 
   const registerSubmitHandler = (values) => {
     signUp(values.email, values.password).then((userData) => {
-      setAuth(userData);
+      setAuth({ userUid: userData.uid });
       navigate(Path.Home);
     });
   };

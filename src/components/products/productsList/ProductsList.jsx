@@ -63,6 +63,9 @@ const ProductsList = () => {
       const updatedProducts = [...products.filter((p) => p.id !== productId), updatedProduct];
       setProducts(updatedProducts);
     })
+    console.log('Editing..')
+
+    setEditMode(false);
     
   };
 
