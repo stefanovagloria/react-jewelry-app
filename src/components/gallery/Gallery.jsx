@@ -8,67 +8,73 @@ import img6 from "../../assets/6.jpg";
 import img7 from "../../assets/7.jpg";
 import img8 from "../../assets/8.jpg";
 
+import Loader from '../loader/Loader'
+
 const Gallery = () => {
   return (
-    <div className={styles.container}>
-      <article className={styles.box}>
-        <a className={styles.a}>
-          <div className={styles.img}>
-            <img src={img1} alt="NO IMAGE" />
-          </div>
-          <div className="detail-box"></div>
-        </a>
-      </article>
-      <article className={styles.box}>
-        <a className={styles.a}>
-          <div className={styles.img}>
-            <img src={img2} alt="NO IMAGE" />
-          </div>
-        </a>
-      </article>
-      <article className={styles.box}>
-        <a className={styles.a}>
-          <div className={styles.img}>
-            <img src={img3} alt="NO IMAGE" />
-          </div>
-        </a>
-      </article>
-      <article className={styles.box}>
-        <a className={styles.a}>
-          <div className={styles.img}>
-            <img src={img4} alt="NO IMAGE" />
-          </div>
-        </a>
-      </article>
-      <article className={styles.box}>
-        <a className={styles.a}>
-          <div className={styles.img}>
-            <img src={img5} alt="NO IMAGE" />
-          </div>
-        </a>
-      </article>
-      <article className={styles.box}>
-        <a className={styles.a}> 
-          <div className={styles.img}>
-            <img src={img6} alt="NO IMAGE" />
-          </div>
-        </a>
-      </article>
-      <article className={styles.box}>
-        <a className={styles.a}> 
-          <div className={styles.img}>
-            <img src={img7} alt="NO IMAGE" />
-          </div>
-        </a>
-      </article>
-      <article className={styles.box}>
-        <a className={styles.a}> 
-          <div className={styles.img}>
-            <img src={img8} alt="NO IMAGE" />
-          </div>
-        </a>
-      </article>
-    </div>
+
+   
+     <div className={styles.container}>
+       {img1 ?     <div><article className={styles.box}>
+      <a className={styles.a}>
+        <div className={styles.img}>
+          <img src={img1} alt="NO IMAGE" />
+        </div>
+        <div className="detail-box"></div>
+      </a>
+    </article>
+    <article className={styles.box}>
+      <a className={styles.a}>
+        <div className={styles.img}>
+          <img src={img2} alt="NO IMAGE" />
+        </div>
+      </a>
+    </article>
+    <article className={styles.box}>
+      <a className={styles.a}>
+        <div className={styles.img}>
+          <img src={img3} alt="NO IMAGE" />
+        </div>
+      </a>
+    </article>
+    <article className={styles.box}>
+      <a className={styles.a}>
+        <div className={styles.img}>
+          <img src={img4} alt="NO IMAGE" />
+        </div>
+      </a>
+    </article>
+    <article className={styles.box}>
+      <a className={styles.a}>
+        <div className={styles.img}>
+          <img src={img5} alt="NO IMAGE" />
+        </div>
+      </a>
+    </article>
+    <article className={styles.box}>
+      <a className={styles.a}> 
+        <div className={styles.img}>
+          <img src={img6} alt="NO IMAGE" />
+        </div>
+      </a>
+    </article>
+    <article className={styles.box}>
+      <a className={styles.a}> 
+        <div className={styles.img}>
+          <img src={img7} alt="NO IMAGE" />
+        </div>
+      </a>
+    </article>
+    <article className={styles.box}>
+      <a className={styles.a}> 
+        <div className={styles.img}>
+          <img src={img8} alt="NO IMAGE" />
+        </div>
+      </a>
+    </article> </div>: <Loader/>} 
+
+  </div> 
+    
   );
 };
 
