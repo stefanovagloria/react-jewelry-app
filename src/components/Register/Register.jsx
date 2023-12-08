@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import styles from "./Register.module.css";
 import AuthContext from "../../contexts/authContext";
 import useForm from "../../hooks/useForm";
@@ -11,6 +11,7 @@ const RegisterFormKeys = {
 
 const Register = () => {
   const { registerSubmitHandler } = useContext(AuthContext);
+  const [errors, setErrors] = useState({});
   const { values, onChange, onSubmit } = useForm(
     {
       [RegisterFormKeys.Email]: "",
@@ -19,6 +20,50 @@ const Register = () => {
     },
     registerSubmitHandler
   );
+
+  const emailValidator = (e) =>{
+    const value = e.target.value;
+    if(!value.includes('@')){
+      setErrors(state => ({
+        ...state,
+        email: 'Please enter a valid email address!'
+      }));
+    } else{
+      setErrors(state =>({
+        ...state,
+        email: ''
+      }))
+    }
+  }
+
+  
+  const passwordValidator = (e) =>{
+    if(e.target.value.length < 6){
+      setErrors(state => ({
+        ...state,
+        password: 'Passwords must be at least 6 characters'
+    }))
+    } else{
+      setErrors(state => ({
+        ...state,
+        password: ''
+      }))
+    }
+  }
+
+  const rePasswordValidator = (e) =>{
+    if(e.target.value.length < 6){
+      setErrors(state => ({
+        ...state,
+        rePassword: 'Passwords must be at least 6 characters'
+    }))
+    } else{
+      setErrors(state => ({
+        ...state,
+        rePassword: ''
+      }))
+    }
+  }
 
   return (
     <>
@@ -33,7 +78,11 @@ const Register = () => {
               type="email"
               value={values[RegisterFormKeys.Email]}
               onChange={onChange}
+              onBlur={emailValidator}
             />
+             {errors.email && (
+              <p>{errors.email}</p>
+            )}
             <label htmlFor="password">Password:</label>
             <input
               name="password"
@@ -41,7 +90,11 @@ const Register = () => {
               type="password"
               value={values[RegisterFormKeys.Password]}
               onChange={onChange}
+              onBlur={passwordValidator}
             />
+            {errors.password && (
+              <p>{errors.password}</p>
+            )}
             <label htmlFor="rePassword">Repeat password:</label>
             <input
               name="rePassword"
@@ -49,9 +102,13 @@ const Register = () => {
               type="password"
               value={values[RegisterFormKeys.RePassword]}
               onChange={onChange}
+              onBlur={rePasswordValidator}
             />
+             {errors.rePassword && (
+              <p>{errors.rePassword}</p>
+            )}
           </div>
-          <button className={styles.sbutton} type="submit">
+          <button className={styles.sbutton} type="submit" disabled={errors.email !== '' || errors.password !== '' || errors.rePassword !== ''}>
             Register
           </button>
         </form>

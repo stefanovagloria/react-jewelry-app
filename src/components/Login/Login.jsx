@@ -37,7 +37,7 @@ const [errors, setErrors] = useState({});
   }
 
   const passwordValidator = (e) =>{
-    if(e.target.value.length < 5){
+    if(e.target.value.length < 6){
       setErrors(state => ({
         ...state,
         password: 'Passwords must be at least 6 characters'
@@ -83,7 +83,7 @@ const [errors, setErrors] = useState({});
               <p className={styles.errors}>{errors.password}</p>
             )}
           </div>
-          <button className={styles.submitBtn} type="submit" disabled={errors.email !== '' && errors.password !== ''}>
+          <button className={styles.submitBtn} type="submit" disabled={errors.email !== '' || errors.password !== ''}>
             Login
           </button>
         </form>
