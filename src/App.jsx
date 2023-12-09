@@ -15,6 +15,7 @@ import Contacts from "./components/contacts/Contacts";
 import Footer from "./components/footer/Footer";
 import Logout from "./components/logout/Logout";
 import MyOrders from "./components/my-Orders/myOrders";
+import AuthGuard from "./components/AuthGuard";
 
 function App() {
 
@@ -33,7 +34,7 @@ function App() {
           <Route path="/my-orders" element={<MyOrders />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/order" element={<Order />} />
+          <Route path="/order" element={<AuthGuard> <Order /></AuthGuard>} />
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/logout" element={<Logout />} />
         </Routes>

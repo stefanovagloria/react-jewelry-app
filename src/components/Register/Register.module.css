@@ -31,3 +31,7 @@
     font-size: larger;
     background-color: rgb(188, 158, 113);
 }
+
+.errors {
+    color: red
+}

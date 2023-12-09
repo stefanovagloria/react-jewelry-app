@@ -83,7 +83,7 @@ const [errors, setErrors] = useState({});
               <p className={styles.errors}>{errors.password}</p>
             )}
           </div>
-          <button className={styles.submitBtn} type="submit" disabled={errors.email !== '' || errors.password !== ''}>
+          <button className={styles.submitBtn} type="submit" disabled={Object.values(errors).some(x => x)}>
             Login
           </button>
         </form>

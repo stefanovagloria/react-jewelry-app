@@ -81,7 +81,7 @@ const Register = () => {
               onBlur={emailValidator}
             />
              {errors.email && (
-              <p>{errors.email}</p>
+              <p className={styles.errors}>{errors.email}</p>
             )}
             <label htmlFor="password">Password:</label>
             <input
@@ -93,7 +93,7 @@ const Register = () => {
               onBlur={passwordValidator}
             />
             {errors.password && (
-              <p>{errors.password}</p>
+              <p className={styles.errors}>{errors.password}</p>
             )}
             <label htmlFor="rePassword">Repeat password:</label>
             <input
@@ -105,10 +105,10 @@ const Register = () => {
               onBlur={rePasswordValidator}
             />
              {errors.rePassword && (
-              <p>{errors.rePassword}</p>
+              <p className={styles.errors}>{errors.rePassword}</p>
             )}
           </div>
-          <button className={styles.sbutton} type="submit" disabled={errors.email !== '' || errors.password !== '' || errors.rePassword !== ''}>
+          <button className={styles.sbutton} type="submit" disabled={Object.values(errors).some(x => x)}>
             Register
           </button>
         </form>
