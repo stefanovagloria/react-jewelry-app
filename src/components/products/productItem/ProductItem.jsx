@@ -34,7 +34,7 @@ const ProductItem = ({ product, onEdit, onDelete, onAddToShoppingCard }) => {
           </button>
           <button
             className={styles.buttons}
-            onClick={() => onDelete(product.id)}
+            onClick={() => onDelete(product.id, product.productName)}
           >
             Delete
           </button>

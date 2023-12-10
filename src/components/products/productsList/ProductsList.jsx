@@ -35,7 +35,7 @@ const ProductsList = () => {
   }, []);
 
   const editModeActivationHandler = (productForEditting) => {
-    console.log(productForEditting)
+    console.log(productForEditting);
     setEditMode(true);
     setEditProduct(productForEditting);
   };
@@ -55,28 +55,37 @@ const ProductsList = () => {
   };
 
   const onEditProduct = (product, productId) => {
-  
-    const updatedProduct = {...product, id: productId, creator: userUid}
-    updateProduct(productId,updatedProduct).then((updatedObj) =>{
-
-      
-      const updatedProducts = [...products.filter((p) => p.id !== productId), updatedProduct];
+    const updatedProduct = { ...product, id: productId, creator: userUid };
+    updateProduct(productId, updatedProduct).then((updatedObj) => {
+      const updatedProducts = [
+        ...products.filter((p) => p.id !== productId),
+        updatedProduct,
+      ];
       setProducts(updatedProducts);
-    })
-    console.log('Editing..')
+    });
+    console.log("Editing..");
 
     setEditMode(false);
-    
   };
 
-  const delProduct = (id) => {
-    deleteProduct(id);
-    const updatedProduct = products.filter((product) => product.id !== id);
-    setProducts(updatedProduct);
+  const delProduct = async (id, productName) => {
+    const hasConfirmed = confirm(
+      `Are you sure you want to delete this product - "${productName}"`
+    );
+
+    if (hasConfirmed) {
+      await deleteProduct(id);
+      const updatedProduct = products.filter((product) => product.id !== id);
+      setProducts(updatedProduct);
+    }
   };
 
   const addToShoppingCard = (product) => {
-    const orderedProduct = {product: {...product}, userId: userUid, isCompleted: false};
+    const orderedProduct = {
+      product: { ...product },
+      userId: userUid,
+      isCompleted: false,
+    };
 
     addProduct(orderedProduct);
   };
