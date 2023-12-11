@@ -70,7 +70,7 @@ const ProductsList = () => {
 
   const delProduct = async (id, productName) => {
     const hasConfirmed = confirm(
-      `Are you sure you want to delete this product - "${productName}"`
+      `Are you sure you want to delete this product - "${productName}"?`
     );
 
     if (hasConfirmed) {

@@ -1,20 +1,13 @@
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import AuthContext from "../../../contexts/authContext";
 
 import styles from "./ProductItem.module.css";
-import { useEffect, useState } from "react";
-import { getUserId } from "../../../utils";
-
 import sampleImg from "../../../assets/381074000_781201344013814_821133475041912350_n.jpg";
 
 const ProductItem = ({ product, onEdit, onDelete, onAddToShoppingCard }) => {
+  const { userUid } = useContext(AuthContext);
   const [loggedInAuthor, setLoggedInAuthor] = useState(false);
-
-  useEffect(() => {
-
-    if (product.creator === getUserId()) {
-      setLoggedInAuthor(true);
-    }
-  }, []);
 
   return (
     <article className={styles.container}>
@@ -27,7 +20,7 @@ const ProductItem = ({ product, onEdit, onDelete, onAddToShoppingCard }) => {
           <span className={styles.span}> Price {product.price}$ </span>
         </div>
       </Link>
-      {loggedInAuthor ? (
+      {product.creator === userUid ? (
         <div>
           <button className={styles.buttons} onClick={() => onEdit(product)}>
             Edit
