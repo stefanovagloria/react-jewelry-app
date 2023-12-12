@@ -29,3 +29,25 @@
     font-size: larger;
     background-color: rgb(188, 158, 113);
 }
+
+.buyBtn{
+
+        text-decoration: none;
+        border: 1px solid rgb(188, 158, 113);
+        border-radius: 25px;
+        color:rgb(188, 158, 113) ;
+        display: inline-block;
+        padding: 10px 40px;
+        background-color: white;
+        border-radius: 5px;
+        -webkit-transition: all .3s;
+        transition: all .3s;
+        margin-top: 25px;
+        text-transform: uppercase;
+}
+
+.buyBtn:hover {
+        color: white;
+        background-color: rgb(188, 158, 113);
+        cursor: pointer;
+}

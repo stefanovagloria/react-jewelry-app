@@ -34,7 +34,7 @@ const ProductDetails = () => {
         {product.creator !== userUid && (
            <div>
            <button
-             className={styles.buttons}
+             className={styles.buyBtn}
              onClick={() => onAddToShoppingCard({ ...product })}
            >
              Buy
