@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../../../services/productService";
 import styles from "./ProductDetails.module.css";
-import sampleImg from '../../../assets/381074000_781201344013814_821133475041912350_n.jpg'
+import sampleImg from "../../../assets/381074000_781201344013814_821133475041912350_n.jpg";
+import AuthContext from "../../../contexts/authContext";
 
 const ProductDetails = () => {
   const { id } = useParams();
+  const { userUid } = useContext(AuthContext);
   const [product, setProduct] = useState({});
 
   useEffect(() => {
@@ -15,10 +17,9 @@ const ProductDetails = () => {
   return (
     <div className={styles.container}>
       <div>
-        <img  className={styles.img} src={sampleImg} alt="No image" />
-        
+        <img className={styles.img} src={sampleImg} alt="No image" />
       </div>
-      <div  className={styles.productInfo}>
+      <div className={styles.productInfo}>
         <p>{product.category}</p>
         <h2>{product.productName}</h2>
         <p>
@@ -30,6 +31,16 @@ const ProductDetails = () => {
         <div>
           <p>Price: {product.price}$</p>
         </div>
+        {product.creator !== userUid && (
+           <div>
+           <button
+             className={styles.buttons}
+             onClick={() => onAddToShoppingCard({ ...product })}
+           >
+             Buy
+           </button>
+         </div>
+        )}
       </div>
     </div>
   );

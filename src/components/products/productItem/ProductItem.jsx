@@ -7,7 +7,6 @@ import sampleImg from "../../../assets/381074000_781201344013814_821133475041912
 
 const ProductItem = ({ product, onEdit, onDelete, onAddToShoppingCard }) => {
   const { userUid } = useContext(AuthContext);
-  const [loggedInAuthor, setLoggedInAuthor] = useState(false);
 
   return (
     <article className={styles.container}>
