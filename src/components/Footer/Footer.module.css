@@ -1,9 +1,10 @@
 .footerContainer{
-    margin-top: auto;
-  }
+    
+}
   
   .footerContainer>div{
    display: inline-block;
+   flex-direction: row;
    max-width: 25%;
    padding: 2.5%;
    color: rgb(188, 158, 113);
