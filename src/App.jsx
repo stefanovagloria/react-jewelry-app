@@ -32,11 +32,11 @@ function App() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/about" element={<About />} />
           <Route path="/my-orders" element={<MyOrders />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register /> }/>
+          <Route path="/login" element={<Login /> }/>
           <Route path="/order" element={<AuthGuard> <Order /></AuthGuard>} />
           <Route path="/contacts" element={<Contacts />} />
-          <Route path="/logout" element={<Logout />} />
+          <Route path="/logout" element={<AuthGuard><Logout /></AuthGuard>} />
         </Routes>
 
         <Footer />
