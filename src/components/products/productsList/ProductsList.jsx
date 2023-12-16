@@ -12,6 +12,7 @@ import { isUserLoggedIn } from "../../../utils";
 import Loader from "../../loader/Loader";
 import AuthContext from "../../../contexts/authContext";
 import { addProduct } from "../../../services/orderService";
+import ProductContext from "../../../contexts/productContext";
 
 const ProductsList = () => {
   const { userUid } = useContext(AuthContext);
@@ -35,7 +36,6 @@ const ProductsList = () => {
   }, []);
 
   const editModeActivationHandler = (productForEditting) => {
-    console.log(productForEditting);
     setEditMode(true);
     setEditProduct(productForEditting);
   };
@@ -90,8 +90,17 @@ const ProductsList = () => {
     addProduct(orderedProduct);
   };
 
+  const values = {
+    editModeActivationHandler,
+    editModeCancellationHandler,
+    onCreateProduct,
+    onEditProduct,
+    delProduct,
+    addToShoppingCard
+  }
+
   return (
-    <>
+    <ProductContext.Provider value={values}>
       {products.length === 0 ? (
         <Loader />
       ) : (
@@ -122,7 +131,7 @@ const ProductsList = () => {
       ) : (
         ""
       )}
-    </>
+    </ProductContext.Provider>
   );
 };
 

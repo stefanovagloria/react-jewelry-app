@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../../contexts/authContext";
 
@@ -6,8 +6,7 @@ import styles from "./ProductItem.module.css";
 import sampleImg from "../../../assets/381074000_781201344013814_821133475041912350_n.jpg";
 
 const ProductItem = ({ product, onEdit, onDelete, onAddToShoppingCard }) => {
-  const { userUid } = useContext(AuthContext);
-console.log(product.creator === userUid)
+  const { userUid, isAuthenticated } = useContext(AuthContext);
   return (
     <article className={styles.container}>
       <Link to={`/products/${product.id}`}>
@@ -19,7 +18,7 @@ console.log(product.creator === userUid)
           <span className={styles.span}> Price {product.price}$ </span>
         </div>
       </Link>
-      {product.creator === userUid ? (
+      {isAuthenticated !== null && product.creator === userUid ? (
         <div>
           <button className={styles.buttons} onClick={() => onEdit(product)}>
             Edit
