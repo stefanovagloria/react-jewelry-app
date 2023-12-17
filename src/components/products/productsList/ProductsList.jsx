@@ -12,95 +12,17 @@ import { isUserLoggedIn } from "../../../utils";
 import Loader from "../../loader/Loader";
 import AuthContext from "../../../contexts/authContext";
 import { addProduct } from "../../../services/orderService";
-import ProductContext from "../../../contexts/productContext";
+import ProductContext, { ProductProvider } from "../../../contexts/productContext";
 
 const ProductsList = () => {
   const { userUid } = useContext(AuthContext);
 
-  const [products, setProducts] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [editMode, setEditMode] = useState(false);
-  const [editProduct, setEditProduct] = useState({});
+  const {products, isLoggedIn, editMode, editProduct,editModeActivationHandler,editModeCancellationHandler,
+    onEditProduct,onCreateProduct} = useContext(ProductContext);
 
-  useEffect(() => {
-    setIsLoggedIn(isUserLoggedIn());
-    getAllProducts().then((productsAsJson) => {
-      let products = [];
-
-      for (let id in productsAsJson) {
-        products.push({ ...productsAsJson[id], id });
-      }
-
-      setProducts(products);
-    });
-  }, []);
-
-  const editModeActivationHandler = (productForEditting) => {
-    setEditMode(true);
-    setEditProduct(productForEditting);
-  };
-
-  const editModeCancellationHandler = () => {
-    setEditMode(false);
-  };
-
-  const onCreateProduct = (product) => {
-    createProduct({ ...product, creator: userUid }).then((addedObj) => {
-      const newProduct = { ...product, id: addedObj.name, creator: userUid };
-
-      const updatedProduct = [...products, newProduct];
-
-      setProducts(updatedProduct);
-    });
-  };
-
-  const onEditProduct = (product, productId) => {
-    const updatedProduct = { ...product, id: productId, creator: userUid };
-    updateProduct(productId, updatedProduct).then((updatedObj) => {
-      const updatedProducts = [
-        ...products.filter((p) => p.id !== productId),
-        updatedProduct,
-      ];
-      setProducts(updatedProducts);
-    });
-    console.log("Editing..");
-
-    setEditMode(false);
-  };
-
-  const delProduct = async (id, productName) => {
-    const hasConfirmed = confirm(
-      `Are you sure you want to delete this product - "${productName}"?`
-    );
-
-    if (hasConfirmed) {
-      await deleteProduct(id);
-      const updatedProduct = products.filter((product) => product.id !== id);
-      setProducts(updatedProduct);
-    }
-  };
-
-  const addToShoppingCard = (product) => {
-    const orderedProduct = {
-      product: { ...product },
-      userId: userUid,
-      isCompleted: false,
-    };
-
-    addProduct(orderedProduct);
-  };
-
-  const values = {
-    editModeActivationHandler,
-    editModeCancellationHandler,
-    onCreateProduct,
-    onEditProduct,
-    delProduct,
-    addToShoppingCard
-  }
 
   return (
-    <ProductContext.Provider value={values}>
+    <ProductProvider>
       {products.length === 0 ? (
         <Loader />
       ) : (
@@ -112,7 +34,7 @@ const ProductsList = () => {
                 key={product.id}
                 product={product}
                 onEdit={editModeActivationHandler}
-                onDelete={delProduct}
+                onDelete={deleteProduct}
                 onAddToShoppingCard={addToShoppingCard}
               />
             ))}
@@ -131,7 +53,7 @@ const ProductsList = () => {
       ) : (
         ""
       )}
-    </ProductContext.Provider>
+    </ProductProvider>
   );
 };
 
