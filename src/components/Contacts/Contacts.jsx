@@ -1,16 +1,49 @@
 import styles from "./Contacts.module.css";
+import useForm from "../../hooks/useForm";
+import { sendMessage } from "../../services/contactService";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../../contexts/authContext";
+
+const MessageKeys = {
+  Name: "name",
+  Email: "email",
+  Phone: "phone",
+  Message: "message",
+};
 
 const Contacts = () => {
+  const { userUid } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { values, onChange, onSubmit } = useForm(
+    {
+      [MessageKeys.Name]: "",
+      [MessageKeys.Email]: "",
+      [MessageKeys.Phone]: "",
+      [MessageKeys.Message]: "",
+    },
+    submitHandler
+  );
+
+  async function submitHandler(){
+    console.log(values);
+    await sendMessage({ ...values, status: "Unread", userUid });
+    navigate('/')
+  };
+
   return (
     <>
       <h1 className={styles.title}>CONTACT US</h1>
       <div className={styles.div}>
-        <form>
+        <form onSubmit={onSubmit}>
           <input
             className={styles.input}
             id="name"
             type="text"
             placeholder="Name"
+            name="name"
+            value={values.name}
+            onChange={onChange}
           />
 
           <input
@@ -18,6 +51,9 @@ const Contacts = () => {
             id="email"
             type="text"
             placeholder="Email"
+            name="email"
+            value={values.email}
+            onChange={onChange}
           />
 
           <input
@@ -25,6 +61,9 @@ const Contacts = () => {
             id="phone"
             type="text"
             placeholder="Phone"
+            name="phone"
+            value={values.phone}
+            onChange={onChange}
           />
 
           <input
@@ -32,6 +71,9 @@ const Contacts = () => {
             id="message"
             type="text"
             placeholder="Message"
+            name="message"
+            value={values.message}
+            onChange={onChange}
           />
 
           <button className={styles.button}>SEND</button>

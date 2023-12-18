@@ -9,7 +9,7 @@ const ProductItem = ({ product, onEdit, onDelete, onAddToShoppingCard }) => {
   const { userUid, isAuthenticated } = useContext(AuthContext);
   return (
     <article className={styles.container}>
-      <Link to={`/products/${product.id}`}>
+      <Link to={`/products/${product.id}`} className={styles.link}>
         <div>
           <img className={styles.img} src={sampleImg} alt="NO IMAGE" />
         </div>
@@ -20,21 +20,21 @@ const ProductItem = ({ product, onEdit, onDelete, onAddToShoppingCard }) => {
       </Link>
       {isAuthenticated !== null && product.creator === userUid && (
         <div>
-          <button className={styles.buttons} onClick={() => onEdit(product)}>
+          <button className={styles.buyBtn} onClick={() => onEdit(product)}>
             Edit
           </button>
           <button
-            className={styles.buttons}
+            className={styles.buyBtn}
             onClick={() => onDelete(product.id, product.productName)}
           >
             Delete
           </button>
         </div>
       ) }
-      {isAuthenticated !== null &&(
+      {isAuthenticated !== null && product.creator !== userUid &&(
         <div>
           <button
-            className={styles.buttons}
+            className={styles.buyBtn}
             onClick={() => onAddToShoppingCard({ ...product })}
           >
             Buy
