@@ -10,6 +10,7 @@ const ProductKeys = {
 };
 
 const NewProduct = ({ onCreate }) => {
+
   const { values, onChange, onSubmit } = useForm(
     {
       [ProductKeys.ProductName]: "",
@@ -17,7 +18,8 @@ const NewProduct = ({ onCreate }) => {
       [ProductKeys.Category]: "",
       [ProductKeys.Description]: "",
     },
-    onCreate
+    onCreate,
+  
   );
 
   return (

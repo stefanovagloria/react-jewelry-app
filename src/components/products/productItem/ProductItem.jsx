@@ -18,7 +18,7 @@ const ProductItem = ({ product, onEdit, onDelete, onAddToShoppingCard }) => {
           <span className={styles.span}> Price {product.price}$ </span>
         </div>
       </Link>
-      {isAuthenticated !== null && product.creator === userUid ? (
+      {isAuthenticated !== null && product.creator === userUid && (
         <div>
           <button className={styles.buttons} onClick={() => onEdit(product)}>
             Edit
@@ -30,7 +30,8 @@ const ProductItem = ({ product, onEdit, onDelete, onAddToShoppingCard }) => {
             Delete
           </button>
         </div>
-      ) : (
+      ) }
+      {isAuthenticated !== null &&(
         <div>
           <button
             className={styles.buttons}
@@ -39,7 +40,7 @@ const ProductItem = ({ product, onEdit, onDelete, onAddToShoppingCard }) => {
             Buy
           </button>
         </div>
-      )}
+      )} 
     </article>
   );
 };

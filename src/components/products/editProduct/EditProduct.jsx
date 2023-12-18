@@ -9,6 +9,9 @@ const ProductKeys = {
 };
 
 const EditProduct = ({ product, onEditCancel, onEdit }) => {
+
+ 
+
   const { values, onChange, onSubmit } = useForm(
     {
       [ProductKeys.ProductName]: product.productName,
@@ -16,7 +19,8 @@ const EditProduct = ({ product, onEditCancel, onEdit }) => {
       [ProductKeys.Category]: product.category,
       [ProductKeys.Description]: product.description,
     },
-    onEdit
+    onEdit,
+    
   );
 
   return (
