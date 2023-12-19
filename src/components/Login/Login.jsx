@@ -21,6 +21,7 @@ const [errors, setErrors] = useState({});
     loginSubmitHandler
   );
 
+
   const emailValidator = (e) =>{
     const value = e.target.value;
     if(!value.includes('@')){
@@ -83,7 +84,8 @@ const [errors, setErrors] = useState({});
               <p className={styles.errors}>{errors.password}</p>
             )}
           </div>
-          <button className={styles.submitBtn} type="submit" disabled={Object.values(errors).some(x => x)}>
+          <button className={styles.submitBtn} type="submit" disabled={Object.values(errors).some(x => x)
+             || values.email === '' || values.password === '' }>
             Login
           </button>
         </form>

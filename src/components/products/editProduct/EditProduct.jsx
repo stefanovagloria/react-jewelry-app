@@ -29,6 +29,7 @@ const EditProduct = ({ product, onEditCancel, onEdit }) => {
       <div className={styles.container}>
         <form onSubmit={(e) => onSubmit(e,product.id)}>
           <div>
+            <label>Product name:</label>
             <input
               className={styles.input}
               name="productName"
@@ -36,6 +37,7 @@ const EditProduct = ({ product, onEditCancel, onEdit }) => {
               onChange={onChange}
               placeholder={product.productName}
             />
+            <label>Price:</label>
             <input
               className={styles.input}
               name="price"
@@ -43,6 +45,7 @@ const EditProduct = ({ product, onEditCancel, onEdit }) => {
               onChange={onChange}
               placeholder={product.price}
             />
+            <label>Category:</label>
             <input
               className={styles.input}
               name="category"
@@ -50,6 +53,7 @@ const EditProduct = ({ product, onEditCancel, onEdit }) => {
               onChange={onChange}
               placeholder={product.category}
             />
+            <label>Description:</label>
             <textarea
               className={styles.input}
               name="description"
