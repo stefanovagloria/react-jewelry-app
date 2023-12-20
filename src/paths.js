@@ -1,5 +1,6 @@
 const Path = {
-    Home: '/'
+    Home: '/',
+    
 }
 
 export default Path;

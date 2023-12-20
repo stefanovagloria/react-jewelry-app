@@ -18,30 +18,40 @@ import MyOrders from "./components/my-Orders/myOrders";
 import AuthGuard from "./components/AuthGuard";
 
 function App() {
-
-
   return (
-    <>
-      <AuthProvider>
-        <Navigation />
+    <AuthProvider>
+      <Navigation />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<ProductsList />} />
-          <Route path="/products/:id" element={<ProductDetails />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/my-orders" element={<MyOrders />} />
-          <Route path="/register" element={<Register /> }/>
-          <Route path="/login" element={<Login /> }/>
-          <Route path="/order" element={<AuthGuard> <Order /></AuthGuard>} />
-          <Route path="/contacts" element={<Contacts />} />
-          <Route path="/logout" element={<AuthGuard><Logout /></AuthGuard>} />
-        </Routes>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<ProductsList />} />
+        <Route path="/products/:id" element={<ProductDetails />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/my-orders" element={<MyOrders />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/order"
+          element={
+            <AuthGuard>
+              <Order />
+            </AuthGuard>
+          }
+        />
+        <Route path="/contacts" element={<Contacts />} />
+        <Route
+          path="/logout"
+          element={
+            <AuthGuard>
+              <Logout />
+            </AuthGuard>
+          }
+        />
+      </Routes>
 
-        <Footer />
-      </AuthProvider>
-    </>
+      <Footer />
+    </AuthProvider>
   );
 }
 

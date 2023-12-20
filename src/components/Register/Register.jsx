@@ -108,7 +108,8 @@ const Register = () => {
               <p className={styles.errors}>{errors.rePassword}</p>
             )}
           </div>
-          <button className={styles.sbutton} type="submit" disabled={Object.values(errors).some(x => x)}>
+          <button className={styles.sbutton} type="submit" disabled={Object.values(errors).some(x => x)
+          || values.email === '' || values.password === '' || values.rePassword === ''}>
             Register
           </button>
         </form>

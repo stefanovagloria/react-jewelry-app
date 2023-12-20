@@ -1,7 +1,6 @@
-import { useState, useEffect, useContext } from "react";
+import {  useContext } from "react";
 import { Link } from "react-router-dom";
-import { isUserLoggedIn } from "../../utils";
-import { logout } from "../../services/authService";
+
 
 import styles from "./Navigation.module.css";
 import AuthContext from "../../contexts/authContext";

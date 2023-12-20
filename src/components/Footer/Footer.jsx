@@ -12,11 +12,6 @@ const Footer = () => {
         </p>
       </div>
       <div>
-        <h3>Newsletter</h3>
-        <input placeholder="Enter your email" />
-        <button>SUBSCRIBE</button>
-      </div>
-      <div>
         <h3>NEED HELP</h3>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem

@@ -8,24 +8,21 @@ import {
   createProduct,
   updateProduct,
 } from "../../../services/productService";
-import { isUserLoggedIn } from "../../../utils";
 import Loader from "../../loader/Loader";
 import AuthContext from "../../../contexts/authContext";
 import { addProduct } from "../../../services/orderService";
-import ProductContext from "../../../contexts/productContext";
 
 const ProductsList = () => {
-  const { userUid } = useContext(AuthContext);
+  const { userUid, isAuthenticated } = useContext(AuthContext);
 
   const [products, setProducts] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  
   const [editMode, setEditMode] = useState(false);
   const [editProduct, setEditProduct] = useState({});
 
   useEffect(() => {
-    setIsLoggedIn(isUserLoggedIn());
+    setIsLoggedIn(isAuthenticated)
+
     getAllProducts().then((productsAsJson) => {
       let products = [];
 
@@ -93,7 +90,6 @@ const ProductsList = () => {
   };
 
  
-
   return (
     <>
       {products.length === 0 ? (
