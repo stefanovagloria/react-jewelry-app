@@ -4,6 +4,7 @@
     text-align: center;
     border: 1px solid gainsboro;
     margin: 30px;
+    padding-top: 15px;
     padding-bottom: 40px;
 }
 
@@ -34,4 +35,8 @@
 
 .errors {
     color: red
+}
+
+label{
+    font-weight: bold;
 }

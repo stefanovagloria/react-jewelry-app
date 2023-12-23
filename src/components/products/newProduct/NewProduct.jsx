@@ -30,6 +30,7 @@ const NewProduct = ({ onCreate }) => {
           onSubmit={onSubmit}
         >
           <div>
+          <label>Product name:</label>
             <input
               className={styles.input}
               name="productName"
@@ -37,6 +38,7 @@ const NewProduct = ({ onCreate }) => {
               onChange={onChange}
               placeholder="Product name"
             />
+             <label>Price:</label>
             <input
               className={styles.input}
               name="price"
@@ -44,6 +46,7 @@ const NewProduct = ({ onCreate }) => {
               onChange={onChange}
               placeholder="Price"
             />
+             <label>Category:</label>
             <input
               className={styles.input}
               name="category"
@@ -51,6 +54,7 @@ const NewProduct = ({ onCreate }) => {
               onChange={onChange}
               placeholder="Category"
             />
+             <label>Description:</label>
             <textarea
               className={styles.input}
               name="description"
