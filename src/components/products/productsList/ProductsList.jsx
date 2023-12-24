@@ -79,14 +79,14 @@ const ProductsList = () => {
     }
   };
 
-  const addToShoppingCard = (product) => {
+  const addToShoppingCard = async (product) => {
     const orderedProduct = {
       product: { ...product },
       userId: userUid,
       isCompleted: false,
     };
 
-    addProduct(orderedProduct);
+    await addProduct(orderedProduct);
   };
 
  

@@ -4,6 +4,7 @@ import { getProductById } from "../../../services/productService";
 import styles from "./ProductDetails.module.css";
 import sampleImg from "../../../assets/381074000_781201344013814_821133475041912350_n.jpg";
 import AuthContext from "../../../contexts/authContext";
+import { addProduct } from "../../../services/orderService";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -13,6 +14,16 @@ const ProductDetails = () => {
   useEffect(() => {
     getProductById(id).then((product) => setProduct(product));
   }, []);
+
+  const addToShoppingCard = async (product) => {
+    const orderedProduct = {
+      product: { ...product },
+      userId: userUid,
+      isCompleted: false,
+    };
+
+    await addProduct(orderedProduct);
+  };
 
   return (
     <div className={styles.container}>
@@ -32,14 +43,14 @@ const ProductDetails = () => {
           <p>Price: {product.price}$</p>
         </div>
         {product.creator !== userUid && (
-           <div>
-           <button
-             className={styles.buyBtn}
-             onClick={() => onAddToShoppingCard({ ...product })}
-           >
-             Buy
-           </button>
-         </div>
+          <div>
+            <button
+              className={styles.buyBtn}
+              onClick={() => addToShoppingCard({ ...product })}
+            >
+              Buy
+            </button>
+          </div>
         )}
       </div>
     </div>
