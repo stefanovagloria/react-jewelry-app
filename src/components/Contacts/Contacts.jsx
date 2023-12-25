@@ -36,6 +36,7 @@ const Contacts = () => {
       <h1 className={styles.title}>CONTACT US</h1>
       <div className={styles.div}>
         <form onSubmit={onSubmit}>
+          <label>Name:</label>
           <input
             className={styles.input}
             id="name"
@@ -45,7 +46,7 @@ const Contacts = () => {
             value={values.name}
             onChange={onChange}
           />
-
+<label>Email:</label>
           <input
             className={styles.input}
             id="email"
@@ -55,7 +56,7 @@ const Contacts = () => {
             value={values.email}
             onChange={onChange}
           />
-
+          <label>Phone:</label>
           <input
             className={styles.input}
             id="phone"
@@ -65,7 +66,7 @@ const Contacts = () => {
             value={values.phone}
             onChange={onChange}
           />
-
+          <label>Message:</label>
           <input
             className={styles.input}
             id="message"

@@ -1,4 +1,8 @@
-
+@media screen and (max-width: 1200) {
+  .footerContainer div{
+    padding: 0.1em;
+  }
+}
   
   .footerContainer div{
    display: inline-block;
