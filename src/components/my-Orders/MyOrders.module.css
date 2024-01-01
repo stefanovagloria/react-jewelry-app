@@ -9,7 +9,9 @@
 }
 
 .products {
-	margin-left: 3rem;
+	margin-left: 3em;
+	font-weight: bold;
+	padding: 0.3em;
 }
 
 .CartContainer{
