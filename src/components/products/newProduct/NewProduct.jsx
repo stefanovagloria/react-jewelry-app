@@ -1,5 +1,4 @@
 import useForm from "../../../hooks/useForm";
-
 import styles from "./NewProduct.module.css";
 
 const ProductKeys = {
@@ -21,6 +20,8 @@ const NewProduct = ({ onCreate }) => {
     onCreate,
   
   );
+
+  const disabled = Object.values(values).some(v => v === "");
 
   return (
     <>
@@ -63,7 +64,7 @@ const NewProduct = ({ onCreate }) => {
               placeholder="Description"
             />
           </div>
-          <button className={styles.button} type="submit">
+          <button className={styles.button} type="submit" disabled={disabled}>
             Send
           </button>
         </form>
