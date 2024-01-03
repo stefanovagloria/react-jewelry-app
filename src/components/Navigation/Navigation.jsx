@@ -16,7 +16,7 @@ const Navigation = () => {
       <div className={styles.headerRight}>
         <Link to="/products">Products</Link>
         <Link to="/gallery">Gallery</Link>
-        <Link to="/about">About us</Link>
+        <Link to="/profile">My Profile</Link>
         {isAuthenticated && (
           <>
             <Link to="/my-orders">My Orders</Link>
