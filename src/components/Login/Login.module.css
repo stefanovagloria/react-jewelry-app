@@ -1,8 +1,25 @@
+.mainContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.img{
+    width: 600px;
+    height: auto;
+}
+
+.loginContainer{
+    display: flex;
+    flex-direction: column;
+   
+    background-color: whitesmoke;
+}
+
 .loginForm {
     display: flex;
     justify-content: center;
     text-align: center;
-    border: 1px solid gainsboro;
     margin: 30px;
     padding-bottom: 40px;
     padding-top: 15px;
@@ -14,6 +31,7 @@
     width: 300px;
     padding: 15px;
     margin: 15px;
+    border-radius: 1em;
 }
 
  .title {
@@ -28,11 +46,15 @@
 .submitBtn {
     width: 120px;
     padding: 20px;
-    margin-top: 20px;
-    margin-left: 8rem;
-    color: white;
+    margin: 20px 10px;
+    color: black;
     font-size: larger;
-    background-color: rgb(188, 158, 113);
+    cursor: pointer;
+    border-radius: 1em;
+}
+
+.submitBtn:hover{
+    background-color: rgba(82, 81, 79, 0.372);
 }
 
 a {
@@ -42,4 +64,5 @@ a {
 .errors {
     color: red;
 }
+
 

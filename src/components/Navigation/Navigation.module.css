@@ -3,6 +3,7 @@
     background-color: white;
     padding: 20px 10px;
     width: 100%;
+    font-weight:bolder ;
   }
 
 .header a {
@@ -11,17 +12,18 @@
     text-align: center;
     padding: 20px;
     text-decoration:solid ;
-    font-size: 25px;
+    font-size: 30px;
     line-height: 25px;
     border-radius: 4px;
     
   }
 
   .header a.logo {
-    font-size: 25px;
+    display: inline-block;
+    font-size: 35px;
     font-weight:bolder;
-    border: 1px black;
-    padding-right: 260px;
+    border: 1px rgb(188, 158, 113) solid;
+  
   }
 
   @media screen and (max-width: 500px) {
@@ -37,11 +39,13 @@
 
 .headerRight {
   text-align: center;
-  margin: 0 auto;
+  margin-left: 240px;
+  padding-left: 240px;
 }
 
 .authButtons {
-  padding-right: 100px;
+  padding-right: 50px;
+  padding-left: 50px;
 }
 
 .authButtons a{

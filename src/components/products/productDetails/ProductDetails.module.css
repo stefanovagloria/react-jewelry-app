@@ -1,20 +1,20 @@
 .container {
     display: flex;
     justify-content: center;
-    margin-left: 200px;
-    margin-right: 200px;
-    border: 1px solid rgb(188, 158, 113);
+    margin-left: 220px;
+    margin-right: 220px;
+    border-bottom: 1px solid  rgb(188, 158, 113);
 }
 
 .img{
     width: 500px;
+    height: auto;
 }
 
 
 
 .div{
     display: inline-block;
-    padding: 10px;
 }
 
 .productInfo {

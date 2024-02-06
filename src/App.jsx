@@ -1,13 +1,13 @@
 import { Routes, Route } from "react-router-dom";
-
 import { AuthProvider } from "./contexts/authContext";
+
+import './App.module.css';
 
 import Navigation from "./components/navigation/Navigation";
 import Home from "./components/home/Home";
 import ProductsList from "./components/products/productsList/ProductsList";
 import ProductDetails from "./components/products/productDetails/ProductDetails";
 import Gallery from "./components/gallery/Gallery";
-import About from "./components/profile/Profile";
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import Order from "./components/order/Order";
