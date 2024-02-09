@@ -1,3 +1,4 @@
+import { useState } from "react";
 import useForm from "../../../hooks/useForm";
 import styles from "./NewProduct.module.css";
 
@@ -9,6 +10,7 @@ const ProductKeys = {
 };
 
 const NewProduct = ({ onCreate }) => {
+  const [showForm, setShowForm] = useState(false);
 
   const { values, onChange, onSubmit } = useForm(
     {
@@ -17,58 +19,63 @@ const NewProduct = ({ onCreate }) => {
       [ProductKeys.Category]: "",
       [ProductKeys.Description]: "",
     },
-    onCreate,
-  
+    onCreate
   );
 
-  const disabled = Object.values(values).some(v => v === "");
+  const disabled = Object.values(values).some((v) => v === "");
+
+  const showFormHandler = () => {
+    setShowForm(true);
+  };
 
   return (
     <>
-      <h1 className={styles.title}>Add New Product</h1>
-      <div className={styles.container}>
-        <form
-          onSubmit={onSubmit}
-        >
-          <div>
-          <label>Product name:</label>
-            <input
-              className={styles.input}
-              name="productName"
-              value={values[ProductKeys.ProductName]}
-              onChange={onChange}
-              placeholder="Product name"
-            />
-             <label>Price:</label>
-            <input
-              className={styles.input}
-              name="price"
-              value={values[ProductKeys.Price]}
-              onChange={onChange}
-              placeholder="Price"
-            />
-             <label>Category:</label>
-            <input
-              className={styles.input}
-              name="category"
-              value={values[ProductKeys.Category]}
-              onChange={onChange}
-              placeholder="Category"
-            />
-             <label>Description:</label>
-            <textarea
-              className={styles.input}
-              name="description"
-              value={values[ProductKeys.Description]}
-              onChange={onChange}
-              placeholder="Description"
-            />
-          </div>
-          <button className={styles.button} type="submit" disabled={disabled}>
-            Send
-          </button>
-        </form>
-      </div>
+      <h1 className={styles.title} onClick={showFormHandler}>
+        Add New Product
+      </h1>
+      {showForm && (
+        <div className={styles.container}>
+          <form onSubmit={onSubmit}>
+            <div>
+              <label>Product name:</label>
+              <input
+                className={styles.input}
+                name="productName"
+                value={values[ProductKeys.ProductName]}
+                onChange={onChange}
+                placeholder="Product name"
+              />
+              <label>Price:</label>
+              <input
+                className={styles.input}
+                name="price"
+                value={values[ProductKeys.Price]}
+                onChange={onChange}
+                placeholder="Price"
+              />
+              <label>Category:</label>
+              <input
+                className={styles.input}
+                name="category"
+                value={values[ProductKeys.Category]}
+                onChange={onChange}
+                placeholder="Category"
+              />
+              <label>Description:</label>
+              <textarea
+                className={styles.input}
+                name="description"
+                value={values[ProductKeys.Description]}
+                onChange={onChange}
+                placeholder="Description"
+              />
+            </div>
+            <button className={styles.button} type="submit" disabled={disabled}>
+              Send
+            </button>
+          </form>
+        </div>
+      )}
     </>
   );
 };
