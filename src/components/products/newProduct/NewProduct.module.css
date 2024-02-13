@@ -1,3 +1,24 @@
+.modal{
+
+    position: fixed; /* Position the modal */
+    z-index: 1; /* Ensure it appears on top of other elements */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scrolling if content exceeds viewport */
+    background-color: rgba(0,0,0,0.4); /* Black with transparency */
+}
+
+.content{
+    background-color: #fefefe;
+    margin: 15% auto; /* Center modal vertically and horizontally */
+    padding: 30px;
+    border: 1px solid #888;
+    width: 30%; /* Set width of modal */
+    border-radius: 2em;
+}
+
 
 .container {
     display: flex;
@@ -12,12 +33,13 @@
     width: 300px;
     padding: 15px;
     margin: 15px;
+    border-radius: 2em;
  }
 
  .title {
     text-align: center;
     margin-left: 30px;
-    margin-top: 80px;
+    margin-top: 10px;
     cursor: pointer;
 }
 

@@ -25,12 +25,11 @@ const NewProduct = ({ onCreate }) => {
   const disabled = Object.values(values).some((v) => v === "");
 
   const showFormHandler = () => {
+    console.log('show..')
     setShowForm(true);
   };
 
   const hideFormHandler = () =>{
-
-    console.log('cancel')
     setShowForm(false);
   }
 
@@ -40,7 +39,10 @@ const NewProduct = ({ onCreate }) => {
         Add New Product
       </h1>
       {showForm && (
-        
+        <div className={styles.modal}>
+          <div className={styles.content}>
+
+       
           <div className={styles.container}>
             <form onSubmit={onSubmit}>
               <div>
@@ -92,6 +94,8 @@ const NewProduct = ({ onCreate }) => {
               </button>
             </form>
           </div>
+          </div>
+        </div>
        
       )}
     </>
