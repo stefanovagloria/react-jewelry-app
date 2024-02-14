@@ -80,7 +80,7 @@ const Order = () => {
           {orderedProducts.length > 0 && (
             <div className={styles.CartItems}>
               <table>
-                <thead>
+                <thead className={styles.tableHead}>
                   <tr>
                     <th>Item</th>
                     <th>Quantity</th>

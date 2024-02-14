@@ -1,0 +1,20 @@
+.tableRow td{
+    border-bottom: 1px solid black;
+ 
+   
+}
+
+td{
+    padding: 2em;
+    text-align: center;
+}
+
+.counter span{
+    padding: 0.5em;
+    border: 1.5px solid black;
+}
+
+.counter{
+    border-bottom: 1px solid black;
+ 
+}
