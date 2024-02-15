@@ -104,7 +104,7 @@ const Order = () => {
                   <div>
                     <div className={styles.Subtotal}>Total amount:</div>
                   </div>
-                  <div className={styles.totalAmount}>${totalAmount}</div>
+                  <div className={styles.totalAmount}>{totalAmount} $</div>
                 </div>
                 <button className={styles.button} onClick={checkOut}>
                   Checkout

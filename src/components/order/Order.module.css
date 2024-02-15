@@ -34,15 +34,13 @@
 }
 
 .Heading{
-	font-size: 20px;
-	font-family: 'Open Sans';
+	font-size: 1.4em;
 	font-weight: 700;
 	color: #2F3841;
 }
 
 .Action{
-	font-size: 14px;
-	font-family: 'Open Sans';
+	font-size: 1.4em;
 	font-weight: 600;
 	color: #E44C4C;
 	cursor: pointer;
@@ -72,14 +70,12 @@
 	padding-top: 10px;
 	line-height: 10px;
 	font-size: 32px;
-	font-family: 'Open Sans';
 	font-weight: 800;
 	color: #202020;
 }
 .subtitle{
 	line-height: 10px;
 	font-size: 18px;
-	font-family: 'Open Sans';
 	font-weight: 600;
 	color: #909090;
 }
@@ -97,13 +93,11 @@
 	justify-content: center;
 	align-items: center;
 	font-size: 30px;
-	font-family: 'Open Sans';
 	color: white;
 	cursor: pointer;
 }
 .count{
 	font-size: 20px;
-	font-family: 'Open Sans';
 	font-weight: 600;
 	color: #202020;
 }
@@ -120,14 +114,12 @@
 	padding-top: 15px;
 	padding-bottom: 15px;
 	font-size: 26px;
-	font-family: 'Open Sans';
 	font-weight: 800;
 	color: #202020;
 }
 .save{
 	padding-top: 5px;
 	font-size: 14px;
-	font-family: 'Open Sans';
 	font-weight: 600;
 	color: #1687d9;
 	cursor: pointer;
@@ -135,7 +127,6 @@
 .remove{
 
 	font-size: 14px;
-	font-family: 'Open Sans';
 	font-weight: 600;
 	color: #E44C4C;
 	cursor: pointer;
@@ -151,34 +142,29 @@ hr{
 	margin-right: 5%;
 }
 .checkout{
-	float: right;
-	margin-right: 5%;
-	width: 28%;
+	padding: 1.5em;
+	
 }
 .total{
 	width: 100%;
+	font-size: 1.4em;
 	display: flex;
 	justify-content: space-between;
 }
-.Subtotal{
-	font-size: 22px;
-	font-family: 'Open Sans';
-	font-weight: 700;
-	color: #202020;
+
+
+
+.total div{
+	padding: 0.5em;
 }
+
 .items{
 	font-size: 16px;
-	font-family: 'Open Sans';
 	font-weight: 500;
 	color: #909090;
 	line-height: 10px;
 }
-.totalAmount{
-	font-size: 36px;
-	font-family: 'Open Sans';
-	font-weight: 900;
-	color: #202020;
-}
+
 .button{
 	margin-top: 10px;
 	width: 100%;
@@ -187,9 +173,6 @@ hr{
 	background:  rgb(188, 158, 113);
 	border-radius: 20px;
 	cursor: pointer;
-	font-size: 16px;
-	font-family: 'Open Sans';
-	font-weight: 600;
 	color: white;
 }
 
