@@ -84,6 +84,7 @@ const ProductsList = () => {
       product: { ...product },
       userId: userUid,
       isCompleted: false,
+      count: 1
     };
 
     await addProduct(orderedProduct);

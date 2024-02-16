@@ -16,6 +16,8 @@ const Order = () => {
   const [orderedProducts, setOrderedProducts] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
 
+  console.log(orderedProducts)
+
   useEffect(() => {
     getOrderedProducts().then((productsAsJson) => {
       let products = [];
