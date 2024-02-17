@@ -1,8 +1,19 @@
+.mainContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.registerContainer{
+    display: flex;
+    flex-direction: column;
+    background-color: whitesmoke;
+}
+
 .form {
     display: flex;
     justify-content: center;
     text-align: center;
-    border: 1px solid gainsboro;
     margin: 30px;
     padding-top: 15px;
     padding-bottom: 40px;
@@ -10,11 +21,19 @@
 
 .input{
     display: block;
-    text-align: 'left';
+    text-align: left;
     width: 300px;
     padding: 15px;
     margin: 15px;
+    border-radius: 1em;
  }
+
+ .img{
+    width: 600px;
+    height: auto;
+}
+
+
 
  .title {
     text-align: center;
@@ -23,14 +42,19 @@
 
 
 
-.sbutton {
+
+.submitBtn {
     width: 120px;
     padding: 20px;
-    margin-top: 20px;
-    margin-left: 8rem;
-    color: white;
+    margin: 20px 10px;
+    color: black;
     font-size: larger;
-    background-color: rgb(188, 158, 113);
+    cursor: pointer;
+    border-radius: 1em;
+}
+
+.submitBtn:hover{
+    background-color: rgba(82, 81, 79, 0.372);
 }
 
 .errors {

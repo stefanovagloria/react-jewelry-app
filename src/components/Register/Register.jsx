@@ -3,6 +3,8 @@ import styles from "./Register.module.css";
 import AuthContext from "../../contexts/authContext";
 import useForm from "../../hooks/useForm";
 
+import image from "../../assets/login-form-v18.jpg";
+
 const RegisterFormKeys = {
   Email: "email",
   Password: "password",
@@ -67,7 +69,12 @@ const Register = () => {
 
   return (
     <>
-      <h1 className={styles.title}>REGISTER</h1>
+     <div className={styles.mainContainer}>
+     <div>
+        <img src={image} className={styles.img}/>
+      </div>
+      <div className={styles.registerContainer}>
+      <h1 className={styles.title}>Create your account</h1>
       <div className={styles.form}>
         <form onSubmit={onSubmit}>
           <div>
@@ -108,11 +115,14 @@ const Register = () => {
               <p className={styles.errors}>{errors.rePassword}</p>
             )}
           </div>
-          <button className={styles.sbutton} type="submit" disabled={Object.values(errors).some(x => x)
+          <button className={styles.submitBtn} type="submit" disabled={Object.values(errors).some(x => x)
           || values.email === '' || values.password === '' || values.rePassword === ''}>
             Register
           </button>
         </form>
+      </div>
+      </div>
+     
       </div>
     </>
   );

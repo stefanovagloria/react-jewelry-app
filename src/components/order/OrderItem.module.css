@@ -18,3 +18,13 @@ td{
     border-bottom: 1px solid black;
  
 }
+
+.remove{
+    color: #E44C4C;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.increase, .decrease{
+    cursor: pointer;
+}

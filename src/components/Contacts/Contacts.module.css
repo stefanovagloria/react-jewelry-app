@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     text-align: center;
-    border: 1px solid gainsboro;
     margin: 30px;
     padding-bottom: 40px;
 }
@@ -27,20 +26,25 @@
 
 
 .button {
-    width: 120px;
-    padding: 20px;
-    margin-top: 20px;
-    margin-left: 8rem;
+    text-decoration: none;
+    border: 1px solid rgb(188, 158, 113);
+    border-radius: 25px;
+    color:rgb(188, 158, 113) ;
+    display: inline-block;
+    padding: 10px 40px;
+    background-color: white;
+    border-radius: 5px;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    margin-top: 25px;
+    text-transform: uppercase;
+}
+
+.button:hover{
     color: white;
-    font-size: larger;
     background-color: rgb(188, 158, 113);
 }
 
-.button:hover {
-    cursor: pointer;
-    color: rgb(188, 158, 113);
-    background-color: white;
-}
 
 .a {
     padding: 10px;

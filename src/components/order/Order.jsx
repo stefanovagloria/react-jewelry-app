@@ -46,6 +46,7 @@ const Order = () => {
 
   const removeProduct = async (productId) => {
     await deleteOrderedProduct(productId);
+    console.log(orderedProducts, productId)
 
     const productPrice = orderedProducts.find((p) => p.id === productId).product
       .price;
