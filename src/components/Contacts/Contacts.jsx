@@ -77,7 +77,7 @@ const Contacts = () => {
             onChange={onChange}
           />
 
-          <button className={styles.button}>SEND</button>
+          <button className={styles.submitBtn}>SEND</button>
         </form>
       </div>
     </>
