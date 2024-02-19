@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <div className={styles.container}>
     <div>
-      <Link to='/city'>About Us</Link>
+      <Link to='/about'>About Us</Link>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
         doloremque quod ipsum. Mollitia ipsum nam molestias obcaecati voluptas
@@ -23,7 +23,7 @@ const Footer = () => {
       </p>
     </div>
     <div>
-      <Link to='/about'>Contact Us</Link>
+      <Link to='/contacts'>Contact Us</Link>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
         doloremque quod ipsum. Mollitia ipsum nam molestias obcaecati voluptas

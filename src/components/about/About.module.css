@@ -1,0 +1,27 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    padding:1em  5em;
+    margin: 0em 2em;
+    width: 80%;
+    border: 1px rgb(133, 222, 238) solid;
+}
+
+.container div{
+    padding: 0 auto;
+    width: 50%;
+}
+
+.info{
+    border: 1px rgb(133, 222, 238) solid;
+    background-color: rgb(166, 222, 240);
+    color: white;
+    font-weight: bold;
+    padding: 1em 2em;
+    
+}
+
+.link{
+    color: white;
+    font-weight: bold;
+}

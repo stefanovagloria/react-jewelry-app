@@ -17,6 +17,7 @@ import Logout from "./components/logout/Logout";
 import MyOrders from "./components/my-Orders/myOrders";
 import AuthGuard from "./components/AuthGuard";
 import Profile from "./components/profile/Profile";
+import About from "./components/about/About";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/my-orders" element={<MyOrders />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/about" element={<About />} />
         <Route
           path="/order"
           element={
