@@ -4,8 +4,10 @@
     padding:1em  5em;
     margin: 0em 2em;
     width: 80%;
-    border: 1px rgb(133, 222, 238) solid;
+    background-color: ghostwhite;
+    border: white solid;
 }
+
 
 .container div{
     padding: 0 auto;
@@ -18,10 +20,11 @@
     color: white;
     font-weight: bold;
     padding: 1em 2em;
-    
+    max-width: 50%;
 }
 
 .link{
     color: white;
     font-weight: bold;
+    font-size: larger;
 }
