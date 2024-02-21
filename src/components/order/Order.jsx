@@ -15,10 +15,12 @@ const Order = () => {
   const { userUid } = useContext(AuthContext);
   const [orderedProducts, setOrderedProducts] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
+  const [checkOutMessage, setCheckOutMessage] = useState('');
 
   console.log(orderedProducts)
 
   useEffect(() => {
+    setCheckOutMessage('');
     getOrderedProducts().then((productsAsJson) => {
       let products = [];
       let totalAmount = 0;
@@ -65,6 +67,7 @@ const Order = () => {
 
     setOrderedProducts([]);
     setTotalAmount(0);
+    setCheckOutMessage('Order was sent successfully!');
   };
 
   return (
@@ -118,6 +121,7 @@ const Order = () => {
           {orderedProducts.length === 0 && (
             <div>
               <div className={styles.emptyCart}>No added products!</div>
+              {checkOutMessage && <div className={styles.emptyCart}>{checkOutMessage}</div>}
             </div>
           )}
         </div>
