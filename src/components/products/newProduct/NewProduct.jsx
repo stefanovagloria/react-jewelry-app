@@ -36,7 +36,7 @@ const NewProduct = ({ onCreate }) => {
   return (
     <>
       <h1 className={styles.title} onClick={showFormHandler}>
-        Add New Product
+        -{'>'} Add New Product
       </h1>
       {showForm && (
         <div className={styles.modal}>

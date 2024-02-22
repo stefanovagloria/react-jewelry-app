@@ -121,7 +121,7 @@ const Order = () => {
           {orderedProducts.length === 0 && (
             <div>
               <div className={styles.emptyCart}>No added products!</div>
-              {checkOutMessage && <div className={styles.emptyCart}>{checkOutMessage}</div>}
+              {checkOutMessage && <div className={styles.checkoutMsg}>{checkOutMessage}</div>}
             </div>
           )}
         </div>

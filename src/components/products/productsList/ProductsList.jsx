@@ -21,7 +21,7 @@ const ProductsList = () => {
   const [editProduct, setEditProduct] = useState({});
 
   useEffect(() => {
-    setIsLoggedIn(isAuthenticated)
+    setIsLoggedIn(isAuthenticated);
 
     getAllProducts().then((productsAsJson) => {
       let products = [];
@@ -84,20 +84,29 @@ const ProductsList = () => {
       product: { ...product },
       userId: userUid,
       isCompleted: false,
-    
     };
 
     await addProduct(orderedProduct);
   };
 
- 
   return (
     <>
+    <h1 className={styles.title}>CATALOG</h1>
+      {isLoggedIn ? (
+        <ProductEditor
+          edit={editMode}
+          product={editProduct}
+          onEditCancel={editModeCancellationHandler}
+          onEdit={onEditProduct}
+          onCreateProduct={onCreateProduct}
+        />
+      ) : (
+        ""
+      )}
       {products.length === 0 ? (
         <Loader />
       ) : (
         <>
-          <h1 className={styles.title}>CATALOG</h1>
           <div className={styles.container}>
             {products.map((product) => (
               <ProductItem
@@ -111,26 +120,8 @@ const ProductsList = () => {
           </div>
         </>
       )}
-
-      {isLoggedIn ? (
-        <ProductEditor
-          edit={editMode}
-          product={editProduct}
-          onEditCancel={editModeCancellationHandler}
-          onEdit={onEditProduct}
-          onCreateProduct={onCreateProduct}
-        />
-      ) : (
-        ""
-      )}
     </>
   );
 };
 
 export default ProductsList;
-
-
-
-
-
-

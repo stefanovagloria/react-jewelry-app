@@ -14,9 +14,9 @@
  }
 
  .title {
-    text-align: center;
-    margin-left: 30px;
-    margin-top: 80px;
+    text-align: right;
+    cursor: pointer;
+    margin-right: 2em;
 }
 
 .button {

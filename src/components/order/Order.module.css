@@ -189,6 +189,13 @@ hr{
 	padding: 1em;
 }
 
+.checkoutMsg{
+	text-align: center;
+	font-weight: bolder;
+	padding: 1em;
+	color: green
+}
+
 .itemContainer {
 	display: flex;
 	flex-direction: row;
