@@ -26,6 +26,13 @@
   
   }
 
+  .header a.logo:hover {
+    color: white;
+    background-color: rgb(220, 189, 142);
+    border: 1px rgb(188, 158, 113) solid;
+   
+  }
+
   @media screen and (max-width: 500px) {
     .header a {
       float: none;
