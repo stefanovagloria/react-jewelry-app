@@ -1,0 +1,12 @@
+.container{
+    text-align: center;
+    border: 1px black solid;
+    padding: 1em 10em;
+    width: 10em;
+    justify-content: center;
+}
+
+
+.img{
+    width: 10%;
+}
