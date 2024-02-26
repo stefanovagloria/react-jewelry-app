@@ -4,6 +4,7 @@ import img from './../../assets/userImg.png';
 const Profile = () => {
 
     return(
+        <div className={styles.parentContainer}>
         <div className={styles.container}>
             <div>
             <img src={img} className={styles.img}/>
@@ -15,6 +16,7 @@ const Profile = () => {
                 Email
             </div>
             <button>Edit profile</button>
+        </div>
         </div>
     )
 }
