@@ -13,7 +13,7 @@
     width: 200px;
     height: 200px;
     border: 1px solid black;
-    padding: 4em 2em;
+    padding: 7em 2em;
     
 }
 
@@ -23,5 +23,5 @@ div{
 
 
 .img{
-    width: 40%;
+    width: 80%;
 }
