@@ -29,11 +29,11 @@ const ProductItem = ({ product, onEdit, onDelete, onAddToShoppingCard }) => {
         </div>
         <div>
           <span className={styles.span}>{product.productName}</span>
-          <span className={styles.span}>  {product.price}$ </span>
+          <span className={styles.span}> {product.price}$ </span>
         </div>
       </Link>
       {onHover && (
-        <div className={styles.buttons}>
+        <>
           {isAuthenticated !== null && product.creator === userUid && (
             <div>
               <button className={styles.buyBtn} onClick={() => onEdit(product)}>
@@ -57,7 +57,7 @@ const ProductItem = ({ product, onEdit, onDelete, onAddToShoppingCard }) => {
               </button>
             </div>
           )}
-        </div>
+        </>
       )}
     </article>
   );

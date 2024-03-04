@@ -1,12 +1,12 @@
-.header {
+.nav{
     overflow: hidden;
     background-color: white;
-    padding: 20px 10px;
+    padding: 1em 1em;
     width: 100%;
     font-weight:bolder ;
   }
 
-.header a {
+.nav a {
     float:left;
     color: rgb(188, 158, 113);
     text-align: center;
@@ -15,10 +15,9 @@
     font-size: 30px;
     line-height: 25px;
     border-radius: 4px;
-    
   }
 
-  .header a.logo {
+  .nav a.logo {
     display: inline-block;
     font-size: 35px;
     font-weight:bolder;
@@ -26,7 +25,7 @@
   
   }
 
-  .header a.logo:hover {
+  .nav a.logo:hover {
     color: white;
     background-color: rgb(220, 189, 142);
     border: 1px rgb(188, 158, 113) solid;
@@ -34,27 +33,23 @@
   }
 
   @media screen and (max-width: 500px) {
-    .header a {
+    .nav a {
       float: none;
       display: block;
       text-align: left;
     }
-    .headerRight {
+    .menu {
       float: none;
     }
   }
 
-.headerRight {
-  text-align: center;
-  margin-left: 240px;
-  padding-left: 240px;
-}
+  .menu {
+    text-align: center;
+    margin-left: 240px;
+    padding-left: 240px;
+  }
 
 .authButtons {
   padding-right: 50px;
-  padding-left: 50px;
-}
-
-.authButtons a{
-  float: right;
+  padding-left: 80px;
 }

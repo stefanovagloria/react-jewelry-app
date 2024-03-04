@@ -1,19 +1,18 @@
-import {  useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 
-
-import styles from "./Navigation.module.css";
 import AuthContext from "../../contexts/authContext";
+import styles from "./Navigation.module.css";
 
 const Navigation = () => {
   const { isAuthenticated } = useContext(AuthContext);
 
   return (
-    <nav className={styles.header}>
+    <nav className={styles.nav}>
       <Link to="/" className={styles.logo}>
         HeyBohoGirl
       </Link>
-      <div className={styles.headerRight}>
+      <div className={styles.menu}>
         <Link to="/products">Products</Link>
         <Link to="/gallery">Gallery</Link>
         <Link to="/profile">My Profile</Link>
@@ -21,8 +20,8 @@ const Navigation = () => {
           <>
             <Link to="/my-orders">My Orders</Link>
             <div className={styles.authButtons}>
-              <Link to="/logout">Logout</Link>
               <Link to="/order">Make an Order</Link>
+              <Link to="/logout">Logout</Link>
             </div>
           </>
         )}
